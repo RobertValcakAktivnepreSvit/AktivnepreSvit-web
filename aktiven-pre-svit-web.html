@@ -1,0 +1,2235 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <!-- Nastavenie znakovej sady. UTF-8 zabezpečí správne zobrazovanie slovenskej diakritiky. -->
+  <meta charset="UTF-8" />
+  <!-- Viewport zabezpečuje, aby sa web správne prispôsobil mobilom a tabletom. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Názov stránky, ktorý sa zobrazuje v karte prehliadača a vo výsledkoch vyhľadávania. -->
+  <title>Ing. Róbert Valčák | Aktívne pre Svit</title>
+  <!-- Krátky popis webu pre Google, Facebook a ďalšie služby pri zdieľaní odkazu. -->
+  <meta name="description" content="Oficiálna webová stránka kandidáta Ing. Róberta Valčáka. Aktívne pre Svit – osobný príbeh, hodnoty a program pre mesto Svit." />
+  <style>
+    /*
+    ======================================================================
+    AKO UPRAVOVAŤ TENTO WEB
+    ======================================================================
+
+    1. FARBY WEBU
+       Farby meníš úplne hore v :root.
+       Napríklad:
+       --green = hlavná zelená
+       --orange = oranžová farba
+       --accent = zvýrazňovacia farba tlačidiel a detailov
+
+    2. FOTKY
+       Hlavná fotka kandidáta:
+       moja-fotka.jpg
+
+       Logo:
+       logo.png
+
+       Galéria:
+       galeria-1.jpg
+       galeria-2.jpg
+       galeria-3.jpg
+       atď.
+
+    3. TEXTY
+       Všetky texty môžeš meniť priamo v HTML.
+       Každá sekcia má komentár:
+       HERO
+       O MNE
+       PROGRAM
+       GALÉRIA
+       FAQ
+       KONTAKT
+
+    4. PROGRAM
+       Jeden bod programu = jeden HTML blok <article class="program-item">
+       Ak chceš pridať nový bod programu:
+       - skopíruj celý article
+       - zmeň číslo
+       - zmeň názov a text
+
+    5. GALÉRIA
+       Jedna fotka = jeden <figure class="gallery-slide">
+       Ak chceš pridať ďalšiu:
+       - skopíruj celý figure blok
+       - zmeň názov fotky
+       - zmeň text
+
+    6. MOBILNÁ VERZIA
+       Úpravy pre telefóny sú úplne dole v:
+       @media (max-width: 720px)
+
+    7. AK CHCEŠ MENIŤ VEĽKOSTI:
+       padding = vnútorné odsadenie
+       margin = vonkajší odstup
+       border-radius = zaoblenie
+       font-size = veľkosť textu
+
+    8. AK SA WEB „ROZBIJE“
+       Najčastejšie chýba:
+       - zatváracia značka </div>
+       - </section>
+       - úvodzovka "
+       - bodkočiarka ; v CSS
+
+    ======================================================================
+    */
+
+    /* =========================================================
+       ZÁKLADNÉ NASTAVENIA DIZAJNU
+       Tu si vieš rýchlo meniť farby, tiene, zaoblenia a celkový štýl webu.
+       Najčastejšie budeš upravovať premenné ako --green, --orange, --accent.
+       ========================================================= */
+    :root {
+      /* Hlavná zelená farba webu – používa sa na tmavšie zelené plochy a akcenty. */
+      --green: #3f7c74;
+
+      /* Svetlejšia zelená – používa sa na jemné prechody a doplnkové efekty. */
+      --green-2: #5d9a92;
+
+      /* Tmavá zelená – používa sa najmä na tmavé sekcie a kontrastné časti. */
+      --green-dark: #2d5f59;
+
+      /* Veľmi svetlá zelená – vhodná ako jemné pozadie alebo hover efekt. */
+      --green-soft: #eef7f5;
+
+      /* Teplá oranžová – používa sa na tlačidlá, zvýraznenia a grafické detaily. */
+      --orange: #d89a52;
+
+      /* Tmavšia oranžová – doplnková farba pre prechody a sekundárne akcenty. */
+      --orange-2: #c97d38;
+
+      /* Svetlá oranžová – jemné pozadie pre malé štítky a zvýraznené bloky. */
+      --orange-soft: #fff2e2;
+
+      /* Hlavná akcentová farba – používa sa na dôležité texty, štítky a tlačidlá. */
+      --accent: #d97745;
+
+      /* Svetlá verzia akcentovej farby – používa sa ako pozadie štítkov. */
+      --accent-soft: #fde9d8;
+
+      /* Starší názov pre červený akcent – ponechaný kvôli kompatibilite v kóde. */
+      --bata-red: var(--accent);
+
+      /* Starší názov pre tehlovú farbu – tiež ponechaný kvôli kompatibilite. */
+      --brick: var(--orange-2);
+
+      /* Krémová farba – základ pre jemné svetlé pozadia. */
+      --cream: #fffdf9;
+
+      /* Piesková farba – doplnkové pozadie pre teplejší vizuál. */
+      --sand: #f5efe5;
+
+      /* Najtmavšia farba textov – používa sa na nadpisy. */
+      --ink: #243235;
+
+      /* Bežná farba textu v odsekoch. */
+      --text: #42565b;
+
+      /* Tlmená farba textu – popisy, menšie texty, sekundárne informácie. */
+      --muted: #708287;
+
+      /* Farba okrajov kariet a sekcií. */
+      --line: #e8ddd0;
+
+      /* Základná farba pozadia stránky. */
+      --bg: #fcfaf6;
+
+      /* Biela farba pre karty a kontrastné prvky. */
+      --white: #ffffff;
+
+      /* Silnejší tieň – používa sa na väčšie bloky ako hero alebo CTA. */
+      --shadow: 0 18px 50px rgba(86, 76, 60, 0.10);
+
+      /* Jemnejší tieň – používa sa na menšie karty. */
+      --shadow-soft: 0 10px 24px rgba(86, 76, 60, 0.06);
+
+      /* Väčšie zaoblenie rohov. */
+      --radius-xl: 22px;
+
+      /* Stredné zaoblenie rohov – používa sa na bežné karty. */
+      --radius-lg: 18px;
+
+      /* Menšie zaoblenie rohov – používa sa na menšie prvky. */
+      --radius-md: 12px;
+    }
+
+    /* Všetky prvky počítajú šírku vrátane paddingu a borderu. Zabraňuje to rozbíjaniu layoutu. */
+    * { box-sizing: border-box; }
+    /* Plynulé posúvanie pri kliknutí na odkazy v menu, napríklad #program alebo #kontakt. */
+    html { scroll-behavior: smooth; }
+
+    /* Modernejšie označenie označeného textu pri kopírovaní/myšou. */
+    ::selection {
+      background: rgba(217, 119, 69, 0.24);
+      color: var(--ink);
+    }
+
+    body {
+      /* Zabráni vodorovnému posúvaniu stránky, ak nejaký prvok jemne presiahne okraj. */
+      overflow-x: hidden;
+
+      /* Odstráni predvolené okraje prehliadača. */
+      margin: 0;
+
+      /* Hlavné písmo webu. Ak Inter nie je dostupný, použije sa systémové písmo. */
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+
+      /* Základná farba textu na stránke. */
+      color: var(--text);
+
+      /* Celkové pozadie webu: jemné farebné svetlá + krémový gradient. */
+      background:
+        radial-gradient(circle at top right, rgba(217,151,82,0.08), transparent 24%),
+        radial-gradient(circle at bottom left, rgba(93,154,146,0.08), transparent 22%),
+        linear-gradient(180deg, #fffdf9 0%, #f8f4ee 52%, #ffffff 100%);
+
+      /* Výška riadkov v bežnom texte. Väčšie číslo = vzdušnejší text. */
+      line-height: 1.65;
+    }
+
+    /* Odkazy dedia farbu z rodiča a nemajú podčiarknutie. */
+    a { color: inherit; text-decoration: none; }
+
+    /* Odseky nebudú mať horný odsah, aby sa lepšie kontrolovali medzery. */
+    p { margin-top: 0; }
+
+    /* Jemné rozmazané dekoratívne kruhy v pozadí stránky. Môžeš ich odstrániť, ak chceš úplne čisté pozadie. */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.18;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .orb-1 {
+      width: 320px;
+      height: 320px;
+      background: rgba(93,154,146,0.45);
+      top: -80px;
+      left: -80px;
+    }
+
+    .orb-2 {
+      width: 380px;
+      height: 380px;
+      background: rgba(217,151,82,0.32);
+      right: -120px;
+      bottom: 10%;
+    }
+
+    /* Úzky pásik hore ukazuje, ako ďaleko je návštevník pri scrollovaní stránky. */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--green), var(--orange));
+      z-index: 999;
+      transition: width .15s ease;
+    }
+
+    /* Hlavný kontajner stránky. Určuje maximálnu šírku obsahu a odsadenie od okrajov. */
+    .container {
+      /* Maximálna šírka obsahu je 1180px, ale na menších obrazovkách ostane 20px okraj z každej strany. */
+      width: min(1180px, calc(100% - 40px));
+
+      /* Vycentruje kontajner vodorovne. */
+      margin: 0 auto;
+    }
+
+    /* HORNÁ LIŠTA / NAVIGÁCIA
+       Sticky znamená, že menu ostáva hore aj pri scrollovaní. */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 253, 249, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(217,151,82,0.16);
+    }
+
+    .nav {
+      /* Minimálna výška hornej lišty. */
+      min-height: 78px;
+
+      /* Flex layout dá logo naľavo a menu napravo. */
+      display: flex;
+
+      /* Vertikálne vycentrovanie obsahu v lište. */
+      align-items: center;
+
+      /* Logo ostane naľavo, navigácia napravo. */
+      justify-content: space-between;
+
+      /* Medzera medzi značkou a menu. */
+      gap: 22px;
+    }
+
+    .brand {
+      /* Logo a text vedľa seba. */
+      display: flex;
+
+      /* Logo a meno budú zarovnané na stred výšky. */
+      align-items: center;
+
+      /* Medzera medzi logom a menom. */
+      gap: 14px;
+
+      /* Hrubé písmo pre meno kandidáta. */
+      font-weight: 950;
+
+      /* Jemne stiahnuté písmená, aby názov pôsobil modernejšie. */
+      letter-spacing: -0.035em;
+
+      /* Farba mena v hornej lište. */
+      color: var(--ink);
+
+      /* Zabráni zalomeniu brandu na viac riadkov na desktope. */
+      min-width: max-content;
+    }
+
+    /* Logo v hornej lište. Ak chceš väčšie/menšie logo, zmeň width a height. */
+    .brand-logo {
+      width: 54px;
+      height: 54px;
+      border-radius: 8px;
+      object-fit: contain;
+      background: var(--white);
+      border: 2px solid rgba(159, 47, 36, 0.20);
+      padding: 6px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .brand-text span:first-child { font-size: 1.02rem; }
+    .brand small { color: var(--accent); font-weight: 950; letter-spacing: 0.01em; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+      margin: 0;
+      color: #41535b;
+      font-weight: 850;
+      font-size: 0.9rem;
+    }
+
+    nav a {
+      display: inline-flex;
+      padding: 10px 12px;
+      border-radius: 999px;
+      position: relative;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+
+    /* Jemná moderná bodka pod odkazom v menu pri prejdení myšou. */
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 4px;
+      width: 0;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--accent);
+      transform: translateX(-50%);
+      transition: width .2s ease;
+    }
+
+    nav a:hover::after {
+      width: 18px;
+    }
+
+    nav a:hover {
+      background: var(--orange-soft);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* Zabezpečí, že kliknutie na sociálne siete nebude blokované hover efektom menu. */
+    .social-link::after {
+      display: none !important;
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--accent), var(--orange));
+      color: var(--white);
+      box-shadow: 0 10px 22px rgba(217, 119, 69, 0.20);
+    }
+
+    .nav-cta::after {
+      display: none;
+    }
+
+    .nav-cta:hover {
+      background: var(--brick);
+      color: var(--white);
+    }
+
+    /* Sociálne siete v hornej lište. */
+    .social-links {
+      position: relative;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      cursor: pointer;
+      pointer-events: auto;
+      position: relative;
+      z-index: 1000;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      height: 42px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(217,151,82,0.20);
+      color: var(--accent);
+      font-weight: 950;
+      font-size: 0.82rem;
+      box-shadow: var(--shadow-soft);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .social-link:hover {
+      color: var(--accent);
+      transform: translateY(-2px);
+      background: var(--accent-soft);
+      box-shadow: 0 16px 32px rgba(86, 76, 60, 0.12);
+    }
+
+    .social-external {
+      pointer-events: auto !important;
+      touch-action: manipulation;
+    }
+
+    .social-link.full {
+      gap: 8px;
+      min-width: auto;
+      height: 48px;
+      padding: 0 18px;
+      font-size: 0.95rem;
+    }
+
+    /* ÚVODNÁ SEKCIA HERO
+       Toto je prvá najdôležitejšia časť webu: slogan, text, tlačidlá, fotka a meno. */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px 0 0;
+    }
+
+    /* Vonkajší rámik hero sekcie. Tu sa nastavuje veľký obal úvodu, jeho pozadie a tieň. */
+    .hero-shell {
+      position: relative;
+      overflow: hidden;
+      border-radius: 30px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.96), rgba(250,244,236,0.92)),
+        radial-gradient(circle at top right, rgba(217,119,69,0.16), transparent 34%);
+      border: 1px solid rgba(217,151,82,0.16);
+      box-shadow: var(--shadow);
+    }
+
+    /* Tenká gradientová linka hore dodá hero sekcii modernejší detail. */
+    .hero-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--green-2), var(--orange), var(--accent));
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-shell::after {
+      content: "";
+      position: absolute;
+      right: -120px;
+      bottom: -120px;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(217,151,82,0.18), transparent 70%);
+      filter: blur(12px);
+      pointer-events: none;
+    }
+
+    /* Dvojstĺpcové rozloženie hero sekcie na desktope:
+       ľavý stĺpec = text a tlačidlá,
+       pravý stĺpec = fotka, meno a krátky popis. */
+    .hero-inner {
+      /* Umožní správne vrstvenie obsahu nad dekoratívnym pozadím hero-shell. */
+      position: relative;
+
+      /* Obsah bude nad dekoratívnym kruhom z .hero-shell::after. */
+      z-index: 1;
+
+      /* Výška sa prispôsobí obsahu. */
+      min-height: auto;
+
+      /* Desktopové rozloženie do dvoch stĺpcov. */
+      display: grid;
+
+      /* Ľavý stĺpec je text, pravý stĺpec je karta s fotkou. */
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.92fr);
+
+      /* Horné hrany oboch stĺpcov sú zarovnané. */
+      align-items: start;
+
+      /* Medzera medzi textom a fotkou. */
+      gap: 42px;
+
+      /* Vnútorné odsadenie celej hero sekcie. */
+      padding: 72px;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+      height: 100%;
+    }
+
+    /* Malý štítok nad hlavným sloganom: „Nezávislý kandidát...“ */
+    .eyebrow {
+      /* Inline-flex znamená, že rámik má šírku podľa textu, nie celú šírku riadku. */
+      display: inline-flex;
+
+      /* Vertikálne vycentrovanie textu v štítku. */
+      align-items: center;
+
+      /* Medzera, keby sa do štítku doplnila ikona. */
+      gap: 10px;
+
+      /* Vnútorné odsadenie štítku. */
+      padding: 10px 16px;
+
+      /* Veľké zaoblenie vytvorí „pill“ štýl. */
+      border-radius: 999px;
+
+      /* Svetlé pozadie štítku. */
+      background: var(--accent-soft);
+
+      /* Farba textu štítku. */
+      color: var(--accent);
+
+      /* Menší text, aby nepôsobil ako hlavný nadpis. */
+      font-size: 0.82rem;
+
+      /* Tučné písmo pre dôraz. */
+      font-weight: 900;
+
+      /* Väčšie medzery medzi písmenami, vhodné pre štítky a kategórie. */
+      letter-spacing: 0.08em;
+
+      /* Text bude veľkými písmenami. */
+      text-transform: uppercase;
+    }
+
+    /* Hlavný nadpis kampane. Veľkosť je responzívna cez clamp(). */
+    .hero h1 {
+      /* Maximálna šírka hlavného nadpisu. */
+      max-width: 790px;
+
+      /* Responzívna veľkosť: minimálne 3.2rem, ideálne 7.4vw, maximálne 7.1rem. */
+      font-size: clamp(3.2rem, 7.4vw, 7.1rem);
+
+      /* Menšia výška riadku vytvorí kompaktný veľký nadpis. */
+      line-height: 0.88;
+
+      /* Odsadenie nad a pod nadpisom. */
+      margin: 26px 0 24px;
+
+      /* Záporný letter-spacing opticky stiahne veľké písmená bližšie k sebe. */
+      letter-spacing: -0.085em;
+
+      /* Farba hlavného nadpisu. */
+      color: var(--ink);
+
+      /* Zachová pôvodný zápis veľkých/malých písmen. */
+      text-transform: none;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+      position: relative;
+      white-space: nowrap;
+    }
+
+    /* Úvodný odsek pod sloganom. */
+    .lead {
+      font-size: clamp(1.08rem, 1.8vw, 1.3rem);
+      color: #3a4b52;
+      max-width: 740px;
+      margin: 0 0 30px;
+    }
+
+    /* Skupina tlačidiel. V hero sekcii obsahuje tlačidlo na program a príbeh. */
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    
+
+    /* Základný štýl všetkých tlačidiel na stránke. */
+    .btn {
+      /* Tlačidlo sa správa ako flex kontajner, aby bol text pekne vycentrovaný. */
+      display: inline-flex;
+
+      /* Vertikálne zarovnanie textu v tlačidle. */
+      align-items: center;
+
+      /* Horizontálne zarovnanie textu v tlačidle. */
+      justify-content: center;
+
+      /* Minimálna výška tlačidla, dobrá aj pre mobilné kliknutie prstom. */
+      min-height: 52px;
+
+      /* Vnútorné odsadenie tlačidla: hore/dole 14px, vľavo/vpravo 22px. */
+      padding: 14px 22px;
+
+      /* Zaoblenie tlačidla. */
+      border-radius: 8px;
+
+      /* Veľmi tučné písmo. */
+      font-weight: 950;
+
+      /* Predvolený priehľadný okraj, aby sa layout nemenil pri hoveri. */
+      border: 1px solid transparent;
+
+      /* Plynulý prechod pri hover efektoch. */
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.01);
+    }
+
+    .card:hover,
+    .program-item:hover,
+    .mini-card:hover,
+    .quick-point:hover,
+    .stat:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 50px rgba(86, 76, 60, 0.14);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--orange));
+      color: #ffffff;
+      box-shadow: 0 16px 34px rgba(217, 119, 69, 0.28);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Svetelný prechod cez hlavné tlačidlo pri hoveri. */
+    .btn-primary::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.34) 45%, transparent 70%);
+      transform: translateX(-120%);
+      transition: transform .45s ease;
+      pointer-events: none;
+    }
+
+    .btn-primary:hover::before {
+      transform: translateX(120%);
+    }
+
+    .btn-outline {
+      color: var(--accent);
+      background: rgba(255,255,255,0.78);
+      border-color: rgba(159, 47, 36, 0.28);
+    }
+
+    /* Tri krátke hlavné body kampane pod tlačidlami. */
+    .quick-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 28px 0 0;
+      max-width: 830px;
+    }
+
+    .quick-point {
+      padding: 16px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(159,47,36,0.16);
+      border-top: 4px solid var(--bata-red);
+      color: var(--ink);
+      font-weight: 900;
+      box-shadow: 0 10px 24px rgba(72, 53, 39, 0.06);
+    }
+
+    /* Rámik s fotkou, menom a krátkym popisom kandidáta. */
+    .hero-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      /* Karta zaberie celú šírku pravého stĺpca. */
+      width: 100%;
+
+      /* Jemne priehľadné biele pozadie. */
+      background: rgba(255,255,255,0.82);
+
+      /* Jemný okraj karty. */
+      border: 1px solid rgba(159,47,36,0.16);
+
+      /* Jemný tieň pod kartou. */
+      box-shadow: var(--shadow-soft);
+
+      /* Zaoblenie celej karty s fotkou. */
+      border-radius: 16px;
+
+      /* Vnútorné odsadenie okolo zelenej portrait časti. */
+      padding: 18px;
+    }
+
+    /* Vnútorný zelený blok vo fotke kandidáta. Tu je pozadie za fotkou a menom. */
+    .portrait {
+      flex: 1;
+      min-height: 500px;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #5d9a92 0%, #3f7c74 55%, #2d5f59 100%);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 34px;
+      color: var(--white);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fotka kandidáta v hero sekcii. Súbor v HTML je moja-fotka.jpg. */
+    .portrait-logo {
+      width: min(250px, 72vw);
+      height: min(250px, 72vw);
+      max-width: 250px;
+      max-height: 250px;
+      border-radius: 12px;
+      object-fit: cover;
+      margin: 0 auto 28px;
+      display: block;
+      border: 8px solid rgba(255,255,255,0.22);
+      box-shadow: 0 24px 44px rgba(0,0,0,0.22);
+      background: rgba(255,255,255,0.18);
+    }
+
+    .portrait strong {
+      display: block;
+      font-size: clamp(2rem, 4vw, 3.45rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      color: var(--white);
+    }
+
+    .portrait p {
+      margin: 18px auto 0;
+      color: rgba(255,255,255,0.86);
+      max-width: 390px;
+      font-weight: 800;
+    }
+
+    .mini-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .mini-card {
+      padding: 14px 15px;
+      border-radius: 10px;
+      background: #ffffff;
+      border: 1px solid rgba(159,47,36,0.14);
+      color: var(--ink);
+      font-weight: 900;
+      text-align: center;
+      box-shadow: 0 8px 22px rgba(72, 53, 39, 0.05);
+    }
+
+    /* Štyri malé informačné karty pod hero sekciou. */
+    .stats-strip {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+
+    /* Širšie kartičky v sekcii Rodinné korene. */
+    .roots-strip {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .roots-strip .stat {
+      padding: 28px;
+      min-height: 190px;
+    }
+
+    .roots-strip .stat strong {
+      font-size: 1.9rem;
+      line-height: 1.05;
+    }
+
+    .roots-strip .stat span {
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.84);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--bata-red);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.65rem;
+      line-height: 1;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-weight: 850;
+      font-size: .92rem;
+    }
+
+    /* Základné odsadenie všetkých sekcií. Ak chceš kompaktnejší web, zníž 96px. */
+    section { padding: 96px 0; }
+
+    /* Nadpisy sekcií: kicker, veľký nadpis a krátky popis. */
+    .section-title { max-width: 860px; margin-bottom: 42px; }
+    .section-title.center { text-align: center; margin-left: auto; margin-right: auto; }
+
+    .section-kicker {
+      display: inline-flex;
+      margin-bottom: 12px;
+      color: var(--accent);
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      font-size: .82rem;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2.1rem, 4.3vw, 3.7rem);
+      line-height: 1.02;
+      margin: 0 0 16px;
+      letter-spacing: -0.065em;
+      color: var(--ink);
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 1.12rem;
+      margin: 0;
+    }
+
+    /* Univerzálne grid triedy na rozloženie kariet do 2, 3 alebo 4 stĺpcov. */
+    .grid-2, .grid-3, .grid-4 { display: grid; gap: 20px; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+    /* Spoločný vizuál pre karty, FAQ bloky, textové bloky, časovú os a citát. */
+    .card, .program-item, details, .long-copy, .timeline-item, .quote {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+      border-top: 4px solid rgba(159,47,36,0.16);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Jemný moderný svetelný roh na kartách. */
+    .card::after {
+      content: "";
+      position: absolute;
+      top: -70px;
+      right: -70px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(217,151,82,0.16), transparent 68%);
+      pointer-events: none;
+    }
+
+    /* Jedna karta programu. Ak chceš upraviť vzhľad programových bodov, uprav túto triedu. */
+    .program-item {
+      border-radius: 18px;
+      padding: 24px;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .program-item:hover {
+      background: rgba(255,255,255,0.98);
+    }
+
+    details {
+      border-radius: 16px;
+      padding: 20px 22px;
+      transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+
+    details[open] {
+      border-color: rgba(217,119,69,0.22);
+      box-shadow: 0 18px 40px rgba(86,76,60,0.09);
+    }
+
+    .long-copy {
+      border-radius: 14px;
+      padding: 32px;
+    }
+
+    /* Citát v sekcii O mne. Je nastavený ako normálny blok, nie sticky, aby sa neprekrýval pri scrollovaní. */
+    .quote {
+      background: linear-gradient(135deg, #ffffff, var(--orange-soft));
+      border-radius: 14px;
+      padding: 34px;
+      position: relative;
+      top: auto;
+      z-index: 0;
+      border-left: 6px solid var(--bata-red);
+    }
+
+    .quote p {
+      font-size: 1.38rem;
+      font-weight: 950;
+      line-height: 1.32;
+      color: var(--accent);
+      margin: 0 0 18px;
+      letter-spacing: -0.025em;
+    }
+
+    .quote small { color: var(--muted); font-weight: 900; }
+
+    .long-copy p { color: #37474f; }
+    .long-copy p:last-child { margin-bottom: 0; }
+
+    /*
+    ROZKLIKÁVACÍ DETAIL V SEKCII O MNE
+
+    Používa sa na zobrazenie celej neskrátenej verzie textu.
+    Po kliknutí sa obsah plynulo rozbalí.
+    */
+    .about-expand {
+      margin-top: 22px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.92);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .about-expand summary {
+      padding: 18px 22px;
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--accent);
+      background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(250,244,236,0.92));
+    }
+
+    .about-expand-content {
+      padding: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .about-expand-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Časová os v sekcii O mne. */
+    .timeline { display: grid; gap: 16px; margin-top: 22px; }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      gap: 18px;
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid var(--bata-red);
+    }
+
+    .year { font-weight: 950; color: var(--accent); }
+
+    /* Svetlá zvýraznená sekcia. Používa sa napríklad pri Koreňoch a Galérii. */
+    .highlight {
+      background: linear-gradient(180deg, #fffaf3 0%, #f8f2e8 100%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* Tmavšia zelená sekcia Prečo kandidujem. */
+    .dark-section {
+      background: linear-gradient(135deg, #3f7c74 0%, #2d5f59 100%);
+      color: var(--white);
+    }
+
+    .dark-section .section-title h2 { color: var(--white); }
+    .dark-section .section-kicker { color: #f7d7a8; }
+    .dark-section .section-title p, .dark-section .card p { color: rgba(255,255,255,0.82); }
+    .dark-section .card { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.16); box-shadow: none; color: var(--white); }
+    .dark-section .card h3 { color: var(--white); }
+
+    /* Jedna tematická skupina programu, napríklad doprava, mládež, kultúra. */
+    .program-category { margin-bottom: 52px; }
+
+    .category-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+    }
+
+    .category-head h3 {
+      font-size: clamp(1.6rem, 3vw, 2.35rem);
+      margin: 0;
+      letter-spacing: -0.045em;
+      color: var(--ink);
+    }
+
+    .category-head span {
+      color: var(--accent);
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      font-size: .86rem;
+    }
+
+    /* Rozloženie jednotlivých bodov programu do dvoch stĺpcov na desktope. */
+    .program-grid {
+      /* Programové body sú na desktope v mriežke. */
+      display: grid;
+
+      /* Dva rovnako široké stĺpce. */
+      grid-template-columns: repeat(2, 1fr);
+
+      /* Medzera medzi programovými kartami. */
+      gap: 18px;
+    }
+
+    .program-item::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--bata-red), var(--orange));
+      opacity: .85;
+    }
+
+    .program-item strong {
+      display: inline-flex;
+      width: 36px;
+      height: 36px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: var(--orange-soft);
+      color: var(--accent);
+      margin-bottom: 14px;
+      font-weight: 950;
+      border: 1px solid rgba(159,47,36,0.16);
+    }
+
+    .program-item h4 { margin: 0 0 8px; font-size: 1.08rem; line-height: 1.28; color: var(--ink); }
+    .program-item p { margin: 0; color: var(--muted); }
+
+    /* Tlačidlo v programovej karte, ktoré vedie na detail samostatného projektu/podstránku. */
+    .program-detail-link {
+      margin-top: 18px;
+      display: inline-flex;
+      width: fit-content;
+      min-height: 44px;
+      padding: 11px 16px;
+      font-size: 0.9rem;
+      border-radius: 10px;
+    }
+
+    .process {
+      counter-reset: step;
+    }
+
+    /*
+    V sekcii „Ako chcem pracovať“ sme odstránili čísla z kariet.
+    Karty ostávajú rovnaké, len bez automatického číslovania.
+    */
+    .process .card {
+      position: relative;
+      padding-top: 28px;
+    }
+
+    /* GALÉRIA
+       Horizontálny slider. Ďalšiu fotku pridáš skopírovaním jedného <figure class="gallery-slide"> bloku v HTML. */
+    .gallery-slider {
+      /* Relatívna pozícia umožní prípadné doplnenie šípok alebo gradientov. */
+      position: relative;
+
+      /* Fotky sú uložené vedľa seba v jednom riadku. */
+      display: flex;
+
+      /* Medzera medzi fotkami. */
+      gap: 18px;
+
+      /* Ak sa fotky nezmestia, galéria sa bude posúvať vodorovne. */
+      overflow-x: auto;
+
+      /* Pri posúvaní sa fotky pekne „zachytia“ na začiatku karty. */
+      scroll-snap-type: x mandatory;
+
+      /* Miesto pre scrollbar, aby nebol nalepený na fotkách. */
+      padding-bottom: 10px;
+
+      /* Tenší scrollbar vo Firefox prehliadači. */
+      scrollbar-width: thin;
+    }
+
+    .gallery-slider::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .gallery-slider::-webkit-scrollbar-thumb {
+      background: rgba(63,124,116,0.35);
+      border-radius: 999px;
+    }
+
+    /* Jedna fotografia v galérii. min-width určuje šírku jednej karty v slideri. */
+    .gallery-slide {
+      position: relative;
+      min-width: 340px;
+      height: 460px;
+      overflow: hidden;
+      border-radius: 24px;
+      scroll-snap-align: start;
+      background: linear-gradient(135deg, var(--green-soft), var(--orange-soft));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+      flex-shrink: 0;
+    }
+
+    .gallery-slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 42%, rgba(0,0,0,0.18));
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .gallery-slide.large {
+      min-width: 520px;
+    }
+
+    .gallery-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .45s ease;
+    }
+
+    .gallery-slide:hover img {
+      transform: scale(1.04);
+    }
+
+    /* Textový popis, ktorý je položený cez fotku v galérii. */
+    .gallery-overlay {
+      position: absolute;
+      inset: auto 18px 18px 18px;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.36);
+      z-index: 2;
+    }
+
+    .gallery-overlay strong {
+      display: block;
+      color: var(--ink);
+      font-size: 1.02rem;
+      margin-bottom: 6px;
+    }
+
+    .gallery-overlay span {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    /* SEKCIA BROŽÚRKA
+       PDF náhľad kampane priamo na stránke.
+       Súbor stačí uložiť ako brozurka.pdf do rovnakého priečinka ako index.html.
+    */
+    .brochure-wrap {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .brochure-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(250,244,236,0.92));
+    }
+
+    .brochure-top h3 {
+      margin: 0 0 6px;
+      color: var(--ink);
+      font-size: 1.3rem;
+    }
+
+    .brochure-top p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .brochure-frame {
+      width: 100%;
+      height: 820px;
+      border: 0;
+      background: #f3f4f6;
+    }
+
+    /* FAQ sekcia. Každá otázka používa HTML prvok <details>, takže sa dá rozkliknúť bez JavaScriptu. */
+    .faq { display: grid; gap: 14px; }
+    summary {
+      cursor: pointer;
+      font-weight: 950;
+      color: var(--ink);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: "+";
+      width: 28px;
+      height: 28px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      flex: 0 0 auto;
+      transition: transform .2s ease;
+    }
+
+    details[open] summary::after {
+      content: "−";
+      transform: rotate(180deg);
+    }
+    details p { color: var(--muted); margin: 12px 0 0; }
+
+    /* ZÁVEREČNÁ VÝZVA / KONTAKT
+       Spodný výrazný blok s logom, výzvou a tlačidlami. */
+    .cta {
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 28%),
+        linear-gradient(135deg, #3f7c74 0%, #2d5f59 100%);
+      color: var(--white);
+      border-radius: 32px;
+      padding: 72px 30px;
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .cta::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      bottom: -120px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.10);
+      pointer-events: none;
+    }
+
+    .cta-logo {
+      width: 108px;
+      max-height: 96px;
+      object-fit: contain;
+      margin: 0 auto 22px;
+      display: block;
+      background: rgba(255,255,255,0.92);
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    .cta h2 {
+      color: var(--white);
+      font-size: clamp(2rem, 4vw, 3.45rem);
+      line-height: 1.02;
+      letter-spacing: -0.06em;
+      margin: 0 0 16px;
+    }
+
+    .cta p {
+      color: rgba(255,255,255,0.84);
+      max-width: 790px;
+      margin: 0 auto 30px;
+      font-size: 1.12rem;
+    }
+
+    /* Pätička webu. */
+    footer {
+      padding: 38px 0;
+      color: #64748b;
+      font-weight: 850;
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(12px);
+    }
+
+    
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+      padding-top: 26px;
+    }
+
+    /* TABLET VERZIA
+       Platí pre obrazovky menšie ako 1060px. Menu sa skryje a layout sa zjednoduší. */
+    @media (max-width: 1060px) {
+      nav ul { display: none; }
+      .hero-inner {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 48px;
+        gap: 34px;
+      }
+      .hero-shell { border-radius: 22px; }
+      .story, .grid-2 { grid-template-columns: 1fr; }
+      .grid-4, .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .roots-strip { grid-template-columns: repeat(2, 1fr); }
+      .quote { position: relative; top: auto; }
+    }
+
+    /* MOBILNÁ VERZIA
+       Tu sa upravuje vzhľad na telefónoch: jeden stĺpec, menšie nadpisy, tlačidlá cez celú šírku. */
+    /* Jemné animácie sa vypnú používateľom, ktorí majú v systéme nastavené obmedzenie pohybu. */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .eyebrow,
+      .hero-card {
+        min-height: auto;
+      }
+
+      body {
+        background: linear-gradient(180deg, #fffdf9 0%, #f8f4ee 48%, #ffffff 100%);
+      }
+
+      .container {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .nav {
+        min-height: 68px;
+        gap: 10px;
+      }
+
+      .brand {
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .brand-logo {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        padding: 5px;
+      }
+
+      .brand-text span:first-child {
+        font-size: 0.92rem;
+        line-height: 1.05;
+      }
+
+      .brand small {
+        font-size: 0.78rem;
+      }
+
+      .hero {
+        padding-top: 14px;
+      }
+
+      .hero-shell {
+        border-radius: 20px;
+        box-shadow: 0 12px 32px rgba(86, 76, 60, 0.10);
+      }
+
+      .hero-shell::after {
+        width: 260px;
+        height: 260px;
+        right: -110px;
+        bottom: -120px;
+        opacity: 0.7;
+      }
+
+      .hero-inner {
+        display: flex;
+        flex-direction: column;
+        padding: 26px 18px 20px;
+        gap: 22px;
+      }
+
+      .hero-copy {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .eyebrow {
+        font-size: 0.68rem;
+        line-height: 1.25;
+        letter-spacing: 0.06em;
+        padding: 8px 11px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.75rem, 16vw, 4.05rem);
+        line-height: 0.92;
+        letter-spacing: -0.075em;
+        margin: 18px 0 16px;
+      }
+
+      .hero h1 span {
+        white-space: normal;
+      }
+
+      .lead {
+        font-size: 1rem;
+        line-height: 1.55;
+        margin-bottom: 0;
+      }
+
+      .actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .btn {
+        width: 100%;
+        min-height: 50px;
+        padding: 13px 16px;
+        text-align: center;
+      }
+
+      .quick-points,
+      .grid-3,
+      .grid-4,
+      .program-grid,
+      .mini-card-grid,
+      .stats-strip,
+      .roots-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-slide,
+      .gallery-slide.large {
+        min-width: 82vw;
+        height: 320px;
+      }
+
+      .brochure-top {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+      }
+
+      .brochure-frame {
+        height: 520px;
+      }
+
+      .quick-points {
+        margin-top: 18px;
+        gap: 10px;
+      }
+
+      .hero-card {
+        padding: 12px;
+        border-radius: 18px;
+      }
+
+      .portrait {
+        min-height: auto;
+        padding: 26px 18px;
+        border-radius: 16px;
+      }
+
+      .portrait-logo {
+        width: 178px;
+        height: 178px;
+        border-radius: 14px;
+        border-width: 6px;
+        margin-bottom: 20px;
+      }
+
+      .portrait strong {
+        font-size: 2.25rem;
+      }
+
+      .portrait p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .quick-point,
+      .mini-card,
+      .stat,
+      .card,
+      .program-item,
+      details,
+      .long-copy,
+      .quote,
+      .timeline-item {
+        border-radius: 14px;
+      }
+
+      .stats-strip {
+        margin-top: 14px;
+      }
+
+      .stat {
+        padding: 16px;
+      }
+
+      .stat strong {
+        font-size: 1.42rem;
+      }
+
+      section {
+        padding: 62px 0;
+      }
+
+      .section-title {
+        margin-bottom: 26px;
+      }
+
+      .section-title.center {
+        text-align: left;
+      }
+
+      .section-kicker {
+        font-size: 0.72rem;
+      }
+
+      .section-title h2 {
+        font-size: clamp(2rem, 11vw, 2.75rem);
+        line-height: 1.04;
+        letter-spacing: -0.055em;
+      }
+
+      .section-title p {
+        font-size: 1rem;
+        line-height: 1.55;
+      }
+
+      .story {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .quote {
+        padding: 22px;
+        border-left-width: 4px;
+      }
+
+      .quote p {
+        font-size: 1.12rem;
+      }
+
+      .long-copy {
+        padding: 20px;
+      }
+
+      .timeline {
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 16px;
+      }
+
+      .card,
+      .program-item {
+        padding: 20px;
+      }
+
+      .category-head {
+        align-items: start;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+
+      .category-head h3 {
+        font-size: 1.55rem;
+        line-height: 1.1;
+      }
+
+      .category-head span {
+        font-size: 0.72rem;
+      }
+
+      .program-category {
+        margin-bottom: 38px;
+      }
+
+      .program-grid {
+        gap: 12px;
+      }
+
+      .program-item strong {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 12px;
+      }
+
+      .program-item h4 {
+        font-size: 1.02rem;
+      }
+
+      .process .card {
+        padding-top: 56px;
+      }
+
+      .process .card::before {
+        top: 18px;
+        left: 20px;
+      }
+
+      details {
+        padding: 16px 18px;
+      }
+
+      summary {
+        line-height: 1.35;
+      }
+
+      .cta {
+        border-radius: 20px;
+        padding: 38px 18px;
+      }
+
+      .cta-logo {
+        width: 86px;
+        max-height: 78px;
+        border-radius: 12px;
+      }
+
+      .cta h2 {
+        font-size: clamp(2rem, 11vw, 2.7rem);
+      }
+
+      .cta p {
+        font-size: 1rem;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 0.92rem;
+      }
+
+      .social-links {
+        width: 100%;
+      }
+
+      .social-link.full,
+      .social-link {
+        height: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Dekoratívne pozadie a horný progress bar. Tieto prvky nie sú obsah webu, iba vizuálny efekt. -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="progress-bar" id="progressBar"></div>
+  <!-- HORNÁ NAVIGÁCIA: logo, meno kandidáta a odkazy na sekcie stránky. -->
+  <header>
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="Domov">
+        <img src="logo.png" alt="Logo Aktívne pre Svit" class="brand-logo" />
+        <span class="brand-text">
+          <span>Ing. Róbert Valčák</span>
+          <small>Aktívne pre Svit</small>
+        </span>
+      </a>
+      <nav aria-label="Hlavná navigácia">
+        <ul>
+          <li><a href="#omne">O mne</a></li>
+          <li><a href="#korene">Korene</a></li>
+          <li><a href="#hodnoty">Hodnoty</a></li>
+          <li><a href="#preco">Prečo kandidujem</a></li>
+          <li><a href="#program">Program</a></li>
+          <li><a href="#galeria">Galéria</a></li>
+          <li><a href="#brozura">Brožúrka</a></li>
+          <li><a class="nav-cta" href="#kontakt">Kontakt</a></li>
+          <li><a class="social-link social-external" href="https://www.facebook.com/profile.php?id=61575392084556" target="_top" aria-label="Facebook">FB</a></li>
+          <li><a class="social-link social-external" href="https://www.instagram.com/valcakrobert/" target="_top" aria-label="Instagram">IG</a></li>
+          <li><a class="social-link" href="mailto:info@aktivnepresvit.sk" aria-label="E-mail">Mail</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HLAVNÝ OBSAH STRÁNKY -->
+  <main id="top">
+    <!-- HERO SEKCIА: prvý dojem z webu. Obsahuje slogan, fotku, meno a tlačidlá. -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-shell">
+          
+          <!--
+            HERO VNÚTORNÉ ROZLOŽENIE
+
+            ĽAVÁ STRANA:
+            - slogan
+            - text
+            - tlačidlá
+            - hlavné body kampane
+
+            PRAVÁ STRANA:
+            - fotka
+            - meno
+            - krátky popis
+            - mini karty
+            -->
+          <div class="hero-inner">
+            <div class="hero-copy">
+              <div class="eyebrow">Nezávislý kandidát na poslanca do mestského zastupiteľstva</div>
+              <h1>Aktívne <span>pre Svit</span></h1>
+              <p class="lead">Svit je môj domov, komunita a mesto s výnimočnou históriou. Chcem priniesť energiu, pracovitosť a konkrétne návrhy, ktoré zlepšia každodenný život ľudí.</p>
+              <!-- HLAVNÉ TLAČIDLÁ V HERO SEKCII -->
+              <div class="actions">
+                <a class="btn btn-primary" href="#program">Pozrieť program</a>
+                <a class="btn btn-outline" href="#omne">Spoznať môj príbeh</a>
+              </div>
+              <!-- TRI HLAVNÉ BODY KAMPANE -->
+              <div class="quick-points">
+                <div class="quick-point">Bezpečný a čistý Svit</div>
+                <div class="quick-point">Mládež, šport a seniori</div>
+                <div class="quick-point">Rozumný rozvoj mesta</div>
+              </div>
+            </div>
+
+            <div class="hero-card" aria-label="Kandidát">
+              <div class="portrait">
+                <div>
+                  <img src="moja-fotka.jpg" alt="Ing. Róbert Valčák" class="portrait-logo" />
+                  <strong>Ing. Róbert<br />Valčák</strong>
+                  <p>Kandidát, ktorý chce pracovať rozumne, slušne a s rešpektom k ľuďom vo Svite.</p>
+                </div>
+              </div>
+              <!-- MALÉ DOPLNKOVÉ KARTY POD FOTKOU -->
+              <div class="mini-card-grid">
+                <div class="mini-card">Dobrovoľníctvo</div>
+                <div class="mini-card">Komunitný život</div>
+                <div class="mini-card">Mládež a CVČ</div>
+                <div class="mini-card">Medzigeneračná spolupráca</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ŠTYRI MALÉ ŠTATISTICKÉ KARTY POD HERO SEKCIOU -->
+        <div class="stats-strip">
+          <div class="stat"><strong>2018</strong><span>od roku 2018 som súčasťou príbehu podujatia Horal</span></div>
+          <div class="stat"><strong>CVČ</strong><span>aktivity pre deti, mládež a tábory</span></div>
+          <div class="stat"><strong>JDS</strong><span>spolupráca so seniormi a komunitou</span></div>
+          <div class="stat"><strong>Klub absolventov Baťovej školy Svit</strong><span>Spájam sa s ľuďmi, ktorým záleží na histórii, odkaze a budúcnosti mesta Svit.</span></div>
+          <div class="stat"><strong>Športuj srdcom o.z.</strong><span>Podpora športu, dobrovoľníctva a charitatívnych aktivít, ktoré pomáhajú ľuďom.</span></div>
+          <div class="stat"><strong>Svit</strong><span>domov, ku ktorému patrím</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKCIА O MNE: osobný príbeh kandidáta. -->
+    <section id="omne">
+      <div class="container story">
+        <div class="quote">
+          <p>„Svit pre mňa nie je len adresa. Je to domov, komunita a miesto, ktorému chcem naďalej pomáhať.“</p>
+          <small>Ing. Róbert Valčák</small>
+        </div>
+        <div>
+          <div class="section-title">
+            <span class="section-kicker">Osobný príbeh</span>
+            <h2>O mne</h2>
+            <p>Môj vzťah k mestu sa začal už v detstve a postupne sa z neho stala aktívna služba komunite.</p>
+          </div>
+          <div class="long-copy">
+            <p>Môj aktívny vzťah k mestu Svit sa začal už na základnej škole na Mierovej ulici. Vďaka RNDr. Danici Božovej som sa dostal na prvé súťaže, kde prišli aj prvé úspechy. Práve tie mi otvorili ďalšie dvere a priviedli ma do Centra voľného času Svit.</p>
+            <p>Neskôr ma Mgr. Miroslav Jurčák pozval medzi seniorov na stretnutie pri studničke, kde som rozprával o flóre na Babe. Táto skúsenosť ma priblížila ku komunitnému životu mesta a ukázala mi, aké dôležité je prepájať generácie.</p>
+
+            <!--
+            ROZKLIKÁVACIA NESKRÁTENÁ VERZIA O MNE
+
+            Ak chceš upraviť celý text:
+            - meníš ho vo vnútri about-expand-content
+
+            details = rozklikávací blok
+            summary = názov bloku
+            -->
+            <details class="about-expand">
+              <summary>Prečítať celý môj príbeh</summary>
+
+              <div class="about-expand-content">
+                <p>Všetko sa začalo na Základnej škole na Mierovej ulici, kde som sa vďaka RNDr. Danici Božovej dostal na prvé súťaže a aktivity. Práve tam sa začal môj bližší vzťah k mestu, komunite a dobrovoľníctvu. Cez krúžky a aktivity Centra voľného času Svit som postupne spoznával ľudí, ktorí sa snažili robiť niečo navyše pre ostatných.</p>
+
+                <p>Jedným z dôležitých momentov bolo stretnutie s Mgr. Miroslavom Jurčákom, ktorý ma pozval medzi seniorov na stretnutie pri Svitovskej studničke. Rozprával som tam o flóre na Babe a práve tam som prvýkrát videl, aké dôležité je prepájať generácie. Neskôr som sa začal zapájať aj do ďalších spoločných aktivít mladých ľudí a seniorov vo Svite.</p>
+
+                <p>Od roku 2018 som súčasťou príbehu podujatia Horal. Postupne sa Horal stal mojou srdcovou záležitosťou a získal som množstvo skúseností s organizáciou veľkých športových a komunitných podujatí. O rok neskôr som sa cez CVČ zapojil aj do Horalu Junior. Tieto podujatia ma naučili, že za každou dobrou vecou stojí tímová práca, dobrovoľníci a ľudia, ktorým záleží na meste a komunite.</p>
+
+                <p>Zapájal som sa do aktivít Mládežníckeho parlamentu mesta Svit, prípravy klziska pri Mladosti, letných táborov, podujatí pre deti, športových hier seniorov, stolnotenisových turnajov, komunitných podujatí a rôznych mestských akcií. Veľmi dôležitou skúsenosťou bola pre mňa aj spolupráca medzi mladými ľuďmi, seniormi, dobrovoľníkmi a organizáciami pôsobiacimi vo Svite.</p>
+
+                <p>Od roku 2023 som členom Klubu absolventov Baťovej školy Svit, kde sa venujem pripomínaniu histórie mesta a odkazu ľudí, ktorí Svit budovali. Zároveň som od roku 2025 členom občianskeho združenia Športuj srdcom o.z., ktoré organizuje športové a charitatívne podujatia a pomáha ľuďom prostredníctvom dobrovoľníctva a solidarity.</p>
+
+                <p>Svit vnímam ako mesto s výnimočnou históriou, silnou komunitou a veľkým potenciálom do budúcnosti. Nie je pre mňa len miestom, kde bývam. Je to domov, ku ktorému mám vzťah od detstva a kde chcem ďalej pomáhať. Chcem podporovať projekty, ktoré majú zmysel, prepájať ľudí a prinášať energiu, pracovitosť a konkrétne návrhy pre lepší každodenný život vo Svite.</p>
+              </div>
+            </details>
+          </div>
+          <!-- ČASOVÁ OS ŽIVOTA A AKTIVÍT -->
+          <div class="timeline">
+            <div class="timeline-item"><div class="year">Základná škola</div><div>Prvé súťaže, prvé úspechy a začiatok aktívneho vzťahu k mestu.</div></div>
+            <div class="timeline-item"><div class="year">CVČ Svit</div><div>Krúžky, aktivity, práca s deťmi, tábory a dobrovoľnícka pomoc.</div></div>
+            <div class="timeline-item"><div class="year">2018</div><div>Začiatok pomoci na podujatí Horal a neskôr zapojenie do Horalu Junior.</div></div>
+            <div class="timeline-item"><div class="year">Seniori</div><div>Spolupráca s JDS Svit a medzigeneračné podujatia.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKCIА KORENE: rodinné prepojenie so Svitom a história. -->
+    <section id="korene" class="highlight">
+      <div class="container">
+        <div class="section-title center">
+          <span class="section-kicker">Odkaz rodiny</span>
+          <h2>Rodinné korene vo Svite</h2>
+          <p>Môj vzťah k mestu má hlboký základ. Moja rodina bola so Svitom spätá už od jeho začiatkov – cez prácu, šport aj spoločenský život.</p>
+        </div>
+        <!-- 4 KARTY V JEDNOM RIADKU -->
+        <div class="stats-strip roots-strip">
+          <div class="stat"><strong>Blanka Novotná</strong><span>Moja prastará mama prišla do Svitu ako šestnásťročná v roku 1939 a patrila k prvým generáciám obyvateľov mesta.</span></div>
+
+          <div class="stat"><strong>Augustín Jurčák</strong><span>Môj prastarý otec pracoval vo firme Baťa a hrával futbal za AC Svit. Rodina Jurčákovcov bola súčasťou športového života mesta.</span></div>
+
+          <div class="stat"><strong>Mgr. Miroslav Jurčák</strong><span>Dlhé roky sa venoval komunitnému životu, práci so seniormi a športu. Ako basketbalový tréner vychoval množstvo mladých športovcov a aktívne prepájal generácie vo Svite.</span></div>
+
+          <div class="stat"><strong>Štefan Preisler</strong><span>Patril medzi absolventov Baťovej školy práce v Zlíne a do Svitu prišiel práve zo Zlína pomáhať budovať nové mesto, jeho komunitný aj športový život.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKCIА HODNOTY: hlavné princípy kandidatúry. -->
+    <section id="hodnoty">
+      <div class="container">
+        <div class="section-title center">
+          <span class="section-kicker">Na čom staviam</span>
+          <h2>Hodnoty, s ktorými kandidujem</h2>
+          <p>Nechcem stavať kampaň na prázdnych sľuboch. Dôležitá je pre mňa slušnosť, konkrétna práca a ochota počúvať ľudí.</p>
+        </div>
+        <!-- 4 KARTY V JEDNOM RIADKU -->
+        <div class="grid-4">
+          <article class="card"><h3>Slušnosť</h3><p>Verejná služba má byť postavená na rešpekte, korektnej komunikácii a zodpovednosti voči obyvateľom.</p></article>
+          <article class="card"><h3>Pracovitosť</h3><p>Výsledky nevznikajú samy od seba. Prichádzajú tam, kde ľudia pravidelne pracujú a dotiahnu veci do konca.</p></article>
+          <article class="card"><h3>Spolupráca</h3><p>Svit sa môže rozvíjať len vtedy, keď spolupracujú generácie, školy, kluby, spolky, mesto aj obyvatelia.</p></article>
+          <article class="card"><h3>Konkrétnosť</h3><p>Podporujem praktické riešenia, ktoré reagujú na reálne potreby ľudí v uliciach, školách, športoviskách a komunitách.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKCIА PREČO KANDIDUJEM: motivácia a dôvody kandidatúry. -->
+    <section id="preco" class="dark-section">
+      <div class="container">
+        <div class="section-title">
+          <span class="section-kicker">Motivácia</span>
+          <h2>Prečo kandidujem</h2>
+          <p>Do verejného života vstupujem s rešpektom a pokorou – nie ako kariérny politik, ale ako človek zo Svitu, ktorý dlhodobo vidí život mesta zvnútra.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card"><h3>Chcem pracovať pre ľudí</h3><p>Podporovať riešenia, ktoré zlepšujú každodenný život obyvateľov – bezpečnosť, verejný priestor, služby, šport, školstvo aj komunitu.</p></article>
+          <article class="card"><h3>Chcem prepájať generácie</h3><p>Skúsenosti zo spolupráce mladých ľudí a seniorov mi ukázali, že mesto je silnejšie vtedy, keď sa ľudia poznajú, rešpektujú a spolupracujú.</p></article>
+          <article class="card"><h3>Chcem prinášať nové impulzy</h3><p>Svit má silnú históriu, dobrú polohu a schopných ľudí. Potrebujeme však premyslené projekty, otvorenú komunikáciu a aktívny prístup.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKCIА PROGRAM: tematické body programu. Programové karty môžeš pridávať kopírovaním existujúceho <article class="program-item"> bloku. -->
+    <section id="program">
+      <div class="container">
+        <div class="section-title center">
+          <span class="section-kicker">Priority</span>
+          <h2>Komplexný program pre Svit</h2>
+          <p>Program som rozdelil do tematických oblastí, aby bolo jasné, čo chcem podporovať a aký prínos môžu mať jednotlivé riešenia pre obyvateľov mesta.</p>
+        </div>
+
+        <div class="program-category">
+          <div class="category-head"><h3>Doprava, bezpečnosť a verejný priestor</h3><span>každodenný komfort</span></div>
+          <!-- MRIEŽKA PROGRAMOVÝCH BODOV -->
+          <div class="program-grid">
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item"><strong>1</strong><h4>Pokračovanie chodníka a cyklochodníka po Záhradnú ulicu</h4><p>Bezpečný pohyb chodcov a cyklistov musí byť prioritou. Podporím lepšie prepojenie častí mesta.</p><a class="btn btn-outline program-detail-link" href="program1.html">Podrobnosti projektu</a></article>
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item"><strong>2</strong><h4>Rekonštrukcia chodníkov a ciest</h4><p>Systematická obnova podľa stavu a potrieb jednotlivých lokalít.</p><a class="btn btn-outline program-detail-link" href="program2.html">Podrobnosti projektu</a></article>
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item"><strong>3</strong><h4>Rozumné parkovanie</h4><p>Nové parkovacie miesta tam, kde je to možné, a lepšia organizácia na sídliskách.</p><a class="btn btn-outline program-detail-link" href="program3.html">Podrobnosti projektu</a></article>
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item"><strong>4</strong><h4>Verejné osvetlenie a čistota</h4><p>Bezpečnejšie ulice, úsporné svetlá, lepšia údržba a prevencia vandalizmu.</p><a class="btn btn-outline program-detail-link" href="program4.html">Podrobnosti projektu</a></article>
+          </div>
+        </div>
+
+        <div class="program-category">
+          <div class="category-head"><h3>Mládež, šport a aktívny život</h3><span>energia mesta</span></div>
+          <!-- MRIEŽKA PROGRAMOVÝCH BODOV -->
+          <div class="program-grid">
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item"><strong>5</strong><h4>Nové priestory pre CVČ</h4><p>Podporím presun CVČ do modernejších a vhodnejších priestorov pre deti, mládež, krúžky, komunitné aktivity a tábory.</p><a class="btn btn-outline program-detail-link" href="program5.html">Podrobnosti projektu</a></article>
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item"><strong>6</strong><h4>Priestory pre mestskú políciu</h4><p>Podporím vytvorenie vhodných priestorov pre mestskú políciu v budove mestského úradu pre lepšie fungovanie a dostupnosť služieb.</p><a class="btn btn-outline program-detail-link" href="program6.html">Podrobnosti projektu</a></article>
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item"><strong>7</strong><h4>Športoviská a štadión</h4><p>Tribúna, zázemie, multifunkčný areál, športová hala a podpora pohybu.</p><a class="btn btn-outline program-detail-link" href="program7.html">Podrobnosti projektu</a></article>
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item"><strong>8</strong><h4>Plaváreň</h4><p>Podporím odbornú diskusiu o možnostiach modernej a dlhodobo udržateľnej plavárne pre obyvateľov mesta.</p><a class="btn btn-outline program-detail-link" href="program8.html">Podrobnosti projektu</a></article>
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item">
+              <strong>9</strong>
+              <h4>Revitalizácia Bagroviska</h4>
+              <p>Podpora oddychovej zóny, športu, zelene a kvalitnejšieho priestoru pre rodiny a voľný čas.</p>
+              <a class="btn btn-outline program-detail-link" href="program9.html">Podrobnosti projektu</a>
+            </article>
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item"><strong>10</strong><h4>Aktivity pre všetky generácie</h4><p>Priestory a podujatia, ktoré prepájajú deti, mladých, rodiny aj seniorov.</p><a class="btn btn-outline program-detail-link" href="program10.html">Podrobnosti projektu</a></article>
+            
+          </div>
+        </div>
+
+        <div class="program-category">
+          <div class="category-head"><h3>Komunita, kultúra a história</h3><span>identita Svitu</span></div>
+          <!-- MRIEŽKA PROGRAMOVÝCH BODOV -->
+          <div class="program-grid">
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item">
+              <strong>11</strong>
+              <h4>Železničná stanica ako komunitné centrum</h4>
+              <p>Múzeum, výstavy, galéria, koncerty, prednášky a komunitné aktivity.</p>
+              <a class="btn btn-outline program-detail-link" href="program11.html">Podrobnosti projektu</a>
+            </article>
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item"><strong>12</strong><h4>Klub seniorov a komunitné centrum</h4><p>Dôstojné priestory pre stretávanie, aktivity a medzigeneračné podujatia.</p><a class="btn btn-outline program-detail-link" href="program12.html">Podrobnosti projektu</a></article>
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item"><strong>13</strong><h4>Kultúrny dom a Svitovská studnička</h4><p>Obnova kultúrnych a oddychových miest, ktoré slúžia obyvateľom.</p><a class="btn btn-outline program-detail-link" href="program13.html">Podrobnosti projektu</a></article>
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item"><strong>14</strong><h4>Baťov domček a história mesta</h4><p>Priestor pre výstavy, mestské múzeum, informačné centrum a podporu cestovného ruchu.</p><a class="btn btn-outline program-detail-link" href="program14.html">Podrobnosti projektu</a></article>
+          </div>
+        </div>
+
+        <div class="program-category">
+          <div class="category-head"><h3>Zdravotníctvo, bývanie, školstvo a samospráva</h3><span>dlhodobé riešenia</span></div>
+          <!-- MRIEŽKA PROGRAMOVÝCH BODOV -->
+          <div class="program-grid">
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item"><strong>15</strong><h4>Moderná poliklinika</h4><p>Odborná diskusia o rekonštrukcii bývalej budovy štátnej polície na modernú polikliniku.</p><a class="btn btn-outline program-detail-link" href="program15.html">Podrobnosti projektu</a></article>
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item"><strong>16</strong><h4>Nájomné bývanie</h4><p>Lepšie využitie existujúcich budov a nové možnosti bývania.</p><a class="btn btn-outline program-detail-link" href="program16.html">Podrobnosti projektu</a></article>
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item"><strong>17</strong><h4>Škola na Mierovej ulici</h4><p>Pokračovanie rekonštrukcie, energetické úspory a bezpečnejší pohyb.</p><a class="btn btn-outline program-detail-link" href="program17.html">Podrobnosti projektu</a></article>
+            <!-- JEDEN KONKRÉTNY BOD PROGRAMU -->
+            <article class="program-item"><strong>18</strong><h4>Transparentná samospráva</h4><p>Lepšia informovanosť o investíciách, opravách, projektoch a rozhodnutiach mesta.</p><a class="btn btn-outline program-detail-link" href="program18.html">Podrobnosti projektu</a></article>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- SEKCIА GALÉRIA: horizontálny slider fotografií. Každá fotka je jeden <figure class="gallery-slide">. -->
+    <section id="galeria" class="highlight">
+      <div class="container">
+        <div class="section-title center">
+          <span class="section-kicker">Galéria</span>
+          <h2>Zo života mesta a komunity</h2>
+          <p>Miesto pre fotografie zo Svitu, dobrovoľníckych aktivít, športových podujatí, CVČ, Horalu, stretnutí so seniormi a komunitného života.</p>
+        </div>
+        <!--
+        HORIZONTÁLNA GALÉRIA
+
+        Každá fotka = jeden figure.gallery-slide
+
+        Ak chceš novú fotku:
+        1. skopíruj jeden figure blok
+        2. zmeň názov obrázka
+        3. zmeň text
+
+        large = väčšia karta
+        -->
+        <div class="gallery-slider">
+          <figure class="gallery-slide large">
+            <img src="galeria-1.jpg" alt="Dobrovoľnícke aktivity vo Svite" />
+            <figcaption class="gallery-overlay"><strong>Dobrovoľníctvo a komunita</strong><span>Aktivity, ktoré spájajú ľudí vo Svite</span></figcaption>
+          </figure>
+
+          <figure class="gallery-slide">
+            <img src="galeria-2.jpg" alt="Športové podujatia vo Svite" />
+            <figcaption class="gallery-overlay"><strong>Šport a pohyb</strong><span>Horal, mládež a aktívny život</span></figcaption>
+          </figure>
+
+          <figure class="gallery-slide">
+            <img src="galeria-3.jpg" alt="Centrum voľného času Svit" />
+            <figcaption class="gallery-overlay"><strong>CVČ a mladí</strong><span>Priestor pre deti a talenty</span></figcaption>
+          </figure>
+
+          <figure class="gallery-slide">
+            <img src="galeria-4.jpg" alt="Seniori a medzigeneračné stretnutia" />
+            <figcaption class="gallery-overlay"><strong>Medzigeneračné aktivity</strong><span>Spájanie mladých a seniorov</span></figcaption>
+          </figure>
+
+          <figure class="gallery-slide large">
+            <img src="galeria-5.jpg" alt="Mesto Svit" />
+            <figcaption class="gallery-overlay"><strong>Svit ako domov</strong><span>Mesto s históriou a budúcnosťou</span></figcaption>
+          </figure>
+
+          <figure class="gallery-slide">
+            <img src="galeria-6.jpg" alt="Komunitné podujatia" />
+            <figcaption class="gallery-overlay"><strong>Komunitný život</strong><span>Ľudia, ktorí tvoria atmosféru mesta</span></figcaption>
+          </figure>
+
+          <figure class="gallery-slide">
+            <img src="galeria-7.jpg" alt="Práca s mládežou" />
+            <figcaption class="gallery-overlay"><strong>Mládež a aktivity</strong><span>Energia a nové impulzy</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKCIА BROŽÚRKA
+     PDF brožúrka kampane.
+
+     AKO PRIDAŤ PDF:
+     1. Nahraj súbor do rovnakého priečinka ako index.html
+     2. Pomenuj ho napríklad:
+        brozurka.pdf
+     3. Hotovo — web automaticky zobrazí náhľad aj tlačidlo na stiahnutie.
+-->
+    <section id="brozura">
+      <div class="container">
+        <div class="section-title center">
+          <span class="section-kicker">Brožúrka kampane</span>
+          <h2>Program a vízia pre Svit</h2>
+          <p>Celá brožúrka kampane dostupná priamo na stránke aj na stiahnutie vo formáte PDF.</p>
+        </div>
+
+        <div class="brochure-wrap">
+          <div class="brochure-top">
+            <div>
+              <h3>Aktívne pre Svit — brožúrka kandidáta</h3>
+              <p>Program, hodnoty, príbeh a vízia rozvoja mesta Svit.</p>
+            </div>
+
+            <!-- TLAČIDLO NA STIAHNUTIE PDF -->
+            <a class="btn btn-primary" href="brozurka.pdf" download>
+              Stiahnuť PDF
+            </a>
+          </div>
+
+          <!-- PDF NÁHĽAD PRIAMO NA STRÁNKE -->
+          <iframe
+            class="brochure-frame"
+            src="brozurka.pdf"
+            title="Brožúrka kampane">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKCIА SPÔSOB PRÁCE: vysvetľuje, ako chce kandidát pracovať ako poslanec. -->
+    <section class="highlight">
+      <div class="container">
+        <div class="section-title center">
+          <span class="section-kicker">Spôsob práce</span>
+          <h2>Ako chcem pracovať ako poslanec</h2>
+          <p>Poslanecká práca nie je len hlasovanie na zasadnutí. Je to komunikácia s ľuďmi, sledovanie problémov v teréne a hľadanie riešení, ktoré majú reálny zmysel.</p>
+        </div>
+        <div class="stats-strip roots-strip process">
+          <div class="stat"><strong>Počúvať ľudí</strong><span>Zaujímať sa o podnety obyvateľov, spolkov, škôl, klubov, seniorov, mladých ľudí aj rodín.</span></div>
+          <div class="stat"><strong>Overovať fakty</strong><span>Rozlišovať medzi dobrým nápadom a reálne uskutočniteľným riešením podľa možností mesta.</span></div>
+          <div class="stat"><strong>Hľadať spoluprácu</strong><span>Podporovať projekty, ktoré spájajú ľudí a neprehlbujú zbytočné konflikty.</span></div>
+          <div class="stat"><strong>Dotiahnuť veci</strong><span>Neostať iba pri slovách, ale sledovať, či sa dobré návrhy posúvajú k realizácii.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKCIА ČASTÉ OTÁZKY: rozklikávacie otázky a odpovede. -->
+    <section>
+      <div class="container">
+        <div class="section-title center">
+          <span class="section-kicker">Otázky</span>
+          <h2>Časté otázky</h2>
+          <p>Stručné odpovede na otázky, ktoré môžu obyvateľov zaujímať.</p>
+        </div>
+        <div class="faq">
+          <!-- JEDNA FAQ OTÁZKA -->
+          <details open><summary>Čím je táto kandidatúra iná?</summary><p>Stojí na dlhodobom zapojení do života mesta – cez CVČ, mládež, seniorov, dobrovoľníctvo, športové podujatia a komunitnú prácu.</p></details>
+          <!-- JEDNA FAQ OTÁZKA -->
+          <details><summary>Aké témy sú pre mňa najdôležitejšie?</summary><p>Bezpečný verejný priestor, mládež, šport, seniori, kultúra, rozumný rozvoj mesta, transparentná komunikácia a kvalitnejšie služby.</p></details>
+          <!-- JEDNA FAQ OTÁZKA -->
+          <details><summary>Budem sľubovať všetko naraz?</summary><p>Nie. Program obsahuje návrhy, ktoré treba pripravovať postupne, odborne a podľa finančných možností mesta.</p></details>
+          <!-- JEDNA FAQ OTÁZKA -->
+          <details><summary>Pre koho chcem pracovať?</summary><p>Pre všetkých obyvateľov Svitu – mladých ľudí, rodiny, seniorov, športovcov, dobrovoľníkov, školy, komunity aj ľudí, ktorí chcú v meste žiť spokojnejšie.</p></details>
+          <!-- JEDNA FAQ OTÁZKA -->
+          <details><summary>Prečo kandidujem ako nezávislý kandidát?</summary><p>Chcem sa rozhodovať slobodne, podľa potrieb obyvateľov mesta a nie podľa straníckych záujmov.</p></details>
+          <!-- JEDNA FAQ OTÁZKA -->
+          <details><summary>Ako chcem komunikovať s obyvateľmi?</summary><p>Dôležitá je pre mňa otvorená komunikácia, dostupnosť a pravidelné informovanie o témach, ktoré sa týkajú mesta.</p></details>
+          <!-- JEDNA FAQ OTÁZKA -->
+          <details><summary>Podporujem šport a voľný čas?</summary><p>Áno. Šport, pohyb a voľnočasové aktivity sú dôležité pre deti, mládež aj dospelých a pomáhajú budovať komunitu.</p></details>
+          <!-- JEDNA FAQ OTÁZKA -->
+          <details><summary>Čo považujem za najväčší potenciál Svitu?</summary><p>Ľudí, komunitný život, históriu mesta, športové podujatia a schopnosť spolupracovať naprieč generáciami.</p></details>
+          <!-- JEDNA FAQ OTÁZKA -->
+          <details><summary>Čo by som chcel zlepšiť vo verejnom priestore?</summary><p>Kvalitu chodníkov, bezpečnosť, čistotu, viac zelene, oddychových miest a lepšie podmienky pre rodiny s deťmi.</p></details>
+          <!-- JEDNA FAQ OTÁZKA -->
+          <details><summary>Aký je môj pohľad na rozvoj mesta?</summary><p>Svit sa má rozvíjať moderne, ale s rešpektom k svojej histórii, architektúre a charakteru mesta.</p></details>
+          <!-- JEDNA FAQ OTÁZKA -->
+          <details><summary>Prečo je dôležitá spolupráca generácií?</summary><p>Seniori majú skúsenosti, mladí energiu a nové nápady. Silné mesto vzniká vtedy, keď spolu generácie komunikujú a spolupracujú.</p></details>
+          <!-- JEDNA FAQ OTÁZKA -->
+          <details><summary>Čo očakávam od práce poslanca?</summary><p>Zodpovednosť, prípravu, komunikáciu s ľuďmi a aktívne riešenie problémov, nie len účasť na zasadnutiach.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKCIА KONTAKT / ZÁVEREČNÁ VÝZVA. -->
+    <section id="kontakt">
+      <div class="container">
+        <div class="cta">
+          <img src="data:image/webp;base64,UklGRvIEAABXRUJQVlA4IOYEAAAQLACdASqgAKAAPsFYpU6npLOvpNIsmnAYCWMIcAF5bURjY236LxG/15mQfWWtetQGD01+LnHQ+wKRqNKyv8AkW/1j/TFeCdt+LAYCFh0PpGVESe1kwXdLUGn+UgseWwH0XMZs4eQ7p8WTx/lMVUePbLhTHDQTIooc2OLUdn07Ep6mp+tlmk6zvQ3z35Y82U2UXXYeldg7tBIcAs8Qv38Ar0j+emUars2U9CSAOWNMxxqbgwxmR83n92IfGgD6evGfoxy+0q1iWAD64tfz0owZTg/jFKgc46Qt1rzQw4xloEHpiXUkojrXs4OqmfiNyHinMH1iTmNL/luYqLC9jVRoQ0l530mEktsLLUiD/ZfHLqPlYUB9ApEA6NTUtDDDqM4nBlZCoVYxhr6sHWbb8EfAcvuvTZ9u2ihknX+62dNGcVg6wKp88OC6gelGOAXdBtsC1c5Kazxjp6dbwg8gov1CS3jbUu9wq6NAAP6Y0AnV/heSXcYWAZ7RMcEWhwqwqtTM/HmDaT1C3Qh+jPUxlGocI5m+jt/MqnFJkZqg/JKjnTjCwIwHrifV13NN/hP0eO89ni8UTzn5WsGnyRfFGivJZNOmdsGD8XUYoXXFMzXnV7qbG80VWYjFvGtVi+vTNyIf6POgxtqUE+qHjadbr/4xuZ7ygOkRJ8LtEJY0jGx0Q50ZSm5LVFAq6fCFGidvRM4lohEkmlr9dL6ZG6qUJyJgotIIAIipJH2jVX4/gLL5lluWTrRgjcM8fIC0QJJfbZhBkEMg+gkZ1VC2Ik6p8wq6zMjWLchWPs2ZutMuEGPPNDb35zG5SwPJZ1HiSrK8gkjsBRj+xV2X4EILmH3u/03BAuJEtSYnApzqkEF+a9cRsgMIVyzolVNOILkOqrdTCanVuO3sMEmbZzGDnGmpENQWZPAG+6Pcr8rffPx4c1tT8ch9mwNpY5oMNwbSfOHe5MFt28Ofsaj7fxcaSacpb7bVHMcZG3yOmBOSxo402jhthpYO2tkCiU4Y2jyjEYREPrX8OoEVGQ0n0p/uDGu0r7pLi5rLySH52I1rupAf2QMQXt6XM2jV4lgvRTplPgdw37f1CAzQmxjXwfREd8U/ziiqDxiH4/HcL817WbvsVTZkgke2FT/6NrXO/KwQAGfVUobB46KUOwWp1wroEzMCkW8eo7AMqQ8yleDG2dTy+tT3gNFkwVbYOfY/cehI8ZxK45c42J7mkqRpD2VCfSyDbWmmp8V47pCa1POwuErPRDUndSSp+gcWvA3DH86+jFW75F77tb3k9omqcDLiY6oiYDRvkfPPhHTip5kJ08b8ExLVQZPWj0m6O9Uw+I3MNTTX7FlG8ePccJoAmgOWkhoTmsz7KohVAEg26eeENocbj3f07Q1vsL1FhVPvY6mHEVOSm6um38tc2dgRgjFAzaUpx1UsrPpDmWdA+G2zXL+ycAbTe3Q2VgS0v2xVFKfgukBkolcDGzIqk+T/GLr4Z4aEKcgGxwXphSwlFquPTytI0izVNn5J5xfY/BbAO3h1avPLwLGxLptU0xLLyecJK66oisd1SF5TZJwKc4gXLd6V+Zjn3quDXAxji+qpyCeznctnrMIOrAbjZHurBuBZYBdwWy5jZpcGoEzhmdkSuKCr54wiXVhCIUy4VmFklp/UaIpLFhhKIMAAAAA=" alt="Logo Aktívne pre Svit" class="cta-logo" />
+          <h2>Poďme pracovať aktívne pre Svit</h2>
+          <p>Ak dostanem Vašu dôveru, budem robiť maximum pre to, aby bol Svit mestom, kde sa dobre žije mladým, rodinám aj seniorom – mestom, na ktoré môžeme byť hrdí.</p>
+          <div class="actions" style="justify-content:center">
+            <a class="btn btn-primary" href="#program">Pozrieť program</a>
+            <a class="btn btn-outline" href="#top">Späť hore</a>
+          </div>
+          <div class="social-links" style="justify-content:center; margin-top: 18px;">
+            <a class="social-link full social-external" href="https://www.facebook.com/profile.php?id=61575392084556" target="_top" aria-label="Facebook kandidáta">Facebook</a>
+            <a class="social-link full social-external" href="https://www.instagram.com/valcakrobert/" target="_top" aria-label="Instagram kandidáta">Instagram</a>
+            <a class="social-link full" href="mailto:info@aktivnepresvit.sk" aria-label="E-mail kandidáta">E-mail</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- PÄTIČKA STRÁNKY -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© Ing. Róbert Valčák</div>
+      <div class="social-links">
+        <a class="social-link social-external" href="https://www.facebook.com/profile.php?id=61575392084556" target="_top" aria-label="Facebook">FB</a>
+        <a class="social-link social-external" href="https://www.instagram.com/valcakrobert/" target="_top" aria-label="Instagram">IG</a>
+      </div>
+      <div>Aktívne pre Svit</div>
+    </div>
+  </footer>
+  <!-- Jednoduchý JavaScript pre horný progress bar pri scrollovaní. -->
+  <script>
+    /*
+    ======================================================================
+    PROGRESS BAR PRI SCROLLOVANÍ
+    ======================================================================
+
+    Tento skript:
+    - sleduje scroll stránky
+    - vypočíta percento posunutia
+    - mení šírku horného progress baru
+
+    Ak nechceš progress bar:
+    1. vymaž <div class="progress-bar">
+    2. vymaž celý tento script
+    ======================================================================
+    */
+    // Nájde HTML prvok s id="progressBar".
+    const progressBar = document.getElementById('progressBar');
+
+    // Spustí funkciu vždy, keď používateľ scrolluje stránku.
+    window.addEventListener('scroll', () => {
+      // Aktuálna pozícia scrollovania od vrchu stránky.
+      const scrollTop = window.scrollY;
+
+      // Celková scrollovateľná výška stránky.
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+
+      // Percento prejdenej stránky.
+      const progress = (scrollTop / docHeight) * 100;
+
+      // Nastaví šírku progress baru podľa percenta.
+      progressBar.style.width = progress + '%';
+    });
+  </script>
+</body>
+</html>
