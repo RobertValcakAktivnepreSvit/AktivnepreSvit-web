@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ing. Róbert Valčák | Aktívne pre Svit</title>
+  <meta name="description" content="Oficiálna webová stránka kandidáta Ing. Róberta Valčáka. Aktívne pre Svit – osobný príbeh, hodnoty a program pre mesto Svit." />
+
+  <style>
+    :root {
+      --green: #3f7c74;
+      --green-2: #5d9a92;
+      --green-dark: #2d5f59;
+      --orange: #d89a52;
+      --orange-2: #c97d38;
+      --orange-soft: #fff2e2;
+      --accent: #d97745;
+      --accent-soft: #fde9d8;
+      --cream: #fffdf9;
+      --ink: #243235;
+      --text: #42565b;
+      --muted: #708287;
+      --line: #e8ddd0;
+      --white: #ffffff;
+      --shadow: 0 18px 50px rgba(86, 76, 60, 0.10);
+      --shadow-soft: 0 10px 24px rgba(86, 76, 60, 0.06);
+      --radius-lg: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at top right, rgba(217,151,82,0.08), transparent 24%),
+        radial-gradient(circle at bottom left, rgba(93,154,146,0.08), transparent 22%),
+        linear-gradient(180deg, #fffdf9 0%, #f8f4ee 52%, #ffffff 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    p { margin-top: 0; }
+    ::selection { background: rgba(217,119,69,0.24); color: var(--ink); }
+
+    .container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+
+    .bg-orb { position: fixed; border-radius: 50%; filter: blur(90px); opacity: 0.18; z-index: -1; pointer-events: none; }
+    .orb-1 { width: 320px; height: 320px; background: rgba(93,154,146,0.45); top: -80px; left: -80px; }
+    .orb-2 { width: 380px; height: 380px; background: rgba(217,151,82,0.32); right: -120px; bottom: 10%; }
+
+    .progress-bar { position: fixed; top: 0; left: 0; height: 4px; width: 0%; background: linear-gradient(90deg, var(--green), var(--orange)); z-index: 999; transition: width .15s ease; }
+
+    header { position: sticky; top: 0; z-index: 50; background: rgba(255,253,249,0.88); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(217,151,82,0.16); }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .brand { display: flex; align-items: center; gap: 14px; font-weight: 950; letter-spacing: -0.035em; color: var(--ink); min-width: max-content; }
+    .brand-logo { width: 54px; height: 54px; border-radius: 10px; object-fit: contain; background: var(--white); border: 2px solid rgba(217,151,82,0.20); padding: 6px; box-shadow: var(--shadow-soft); }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .brand small { color: var(--accent); font-weight: 950; letter-spacing: 0.01em; }
+
+    nav ul { list-style: none; display: flex; align-items: center; gap: 8px; padding: 0; margin: 0; color: #41535b; font-weight: 850; font-size: 0.9rem; }
+    nav a { display: inline-flex; padding: 10px 12px; border-radius: 999px; position: relative; transition: background .2s ease, color .2s ease, transform .2s ease; }
+    nav a:hover { background: var(--orange-soft); color: var(--accent); transform: translateY(-1px); }
+    nav a::after { content: ""; position: absolute; left: 50%; bottom: 4px; width: 0; height: 3px; border-radius: 999px; background: var(--accent); transform: translateX(-50%); transition: width .2s ease; }
+    nav a:hover::after { width: 18px; }
+    .nav-cta { background: linear-gradient(135deg, var(--accent), var(--orange)); color: var(--white); box-shadow: 0 10px 22px rgba(217,119,69,0.20); }
+    .nav-cta::after, .social-link::after { display: none !important; }
+
+    .social-links { position: relative; z-index: 1000; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .social-link { cursor: pointer; pointer-events: auto; position: relative; z-index: 1000; display: inline-flex; align-items: center; justify-content: center; min-width: 42px; height: 42px; padding: 0 12px; border-radius: 999px; background: rgba(255,255,255,0.78); border: 1px solid rgba(217,151,82,0.20); color: var(--accent); font-weight: 950; font-size: 0.82rem; box-shadow: var(--shadow-soft); transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .social-link:hover { color: var(--accent); transform: translateY(-2px); background: var(--accent-soft); box-shadow: 0 16px 32px rgba(86,76,60,0.12); }
+    .social-link.full { gap: 8px; min-width: auto; height: 48px; padding: 0 18px; font-size: 0.95rem; }
+
+    .hero { position: relative; overflow: hidden; padding: 34px 0 0; }
+    .hero-shell { position: relative; overflow: hidden; border-radius: 30px; background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(250,244,236,0.92)), radial-gradient(circle at top right, rgba(217,119,69,0.16), transparent 34%); border: 1px solid rgba(217,151,82,0.16); box-shadow: var(--shadow); }
+    .hero-shell::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; background: linear-gradient(90deg, var(--green-2), var(--orange), var(--accent)); z-index: 2; pointer-events: none; }
+    .hero-shell::after { content: ""; position: absolute; right: -120px; bottom: -120px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(217,151,82,0.18), transparent 70%); filter: blur(12px); pointer-events: none; }
+    .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(340px, 0.92fr); align-items: stretch; gap: 42px; padding: 72px; }
+    .hero-copy { display: flex; flex-direction: column; justify-content: space-between; min-width: 0; height: 100%; }
+
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 0.82rem; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; }
+    .hero h1 { max-width: 790px; font-size: clamp(3.2rem, 7.4vw, 7.1rem); line-height: 0.88; margin: 26px 0 24px; letter-spacing: -0.085em; color: var(--ink); }
+    .hero h1 span { color: var(--accent); position: relative; white-space: nowrap; }
+    .lead { font-size: clamp(1.08rem, 1.8vw, 1.3rem); color: #3a4b52; max-width: 740px; margin: 0 0 30px; }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 22px; border-radius: 10px; font-weight: 950; border: 1px solid transparent; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .btn:hover { transform: translateY(-2px) scale(1.01); }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--orange)); color: #ffffff; box-shadow: 0 16px 34px rgba(217,119,69,0.28); }
+    .btn-outline { color: var(--accent); background: rgba(255,255,255,0.78); border-color: rgba(217,151,82,0.28); }
+
+    .quick-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0 0; max-width: 830px; }
+    .quick-point, .mini-card, .stat { background: rgba(255,255,255,0.84); border: 1px solid var(--line); border-top: 4px solid var(--accent); border-radius: 14px; padding: 16px; color: var(--ink); font-weight: 900; box-shadow: var(--shadow-soft); transition: transform .25s ease, box-shadow .25s ease; }
+    .quick-point:hover, .mini-card:hover, .stat:hover, .card:hover, .program-item:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(86,76,60,0.14); }
+
+    .hero-card { height: 100%; display: flex; flex-direction: column; width: 100%; background: rgba(255,255,255,0.82); border: 1px solid rgba(217,151,82,0.16); box-shadow: var(--shadow-soft); border-radius: 16px; padding: 18px; }
+    .portrait { flex: 1; min-height: 500px; border-radius: 22px; background: linear-gradient(145deg, #5d9a92 0%, #3f7c74 55%, #2d5f59 100%); display: grid; place-items: center; text-align: center; padding: 34px; color: var(--white); overflow: hidden; position: relative; }
+    .portrait-logo { width: min(250px, 72vw); height: min(250px, 72vw); max-width: 250px; max-height: 250px; border-radius: 14px; object-fit: cover; margin: 0 auto 28px; display: block; border: 8px solid rgba(255,255,255,0.22); box-shadow: 0 24px 44px rgba(0,0,0,0.22); }
+    .portrait strong { display: block; font-size: clamp(2rem, 4vw, 3.45rem); line-height: 0.98; letter-spacing: -0.055em; color: var(--white); }
+    .portrait p { margin: 18px auto 0; color: rgba(255,255,255,0.86); max-width: 390px; font-weight: 800; }
+    .mini-card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 14px; }
+    .mini-card { text-align: center; border-top-width: 1px; }
+
+    .stats-strip { margin-top: 26px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+    .stat strong { display: block; font-size: 1.45rem; line-height: 1.05; color: var(--accent); letter-spacing: -0.04em; }
+    .stat span { display: block; margin-top: 8px; color: var(--muted); font-weight: 850; font-size: .92rem; }
+    .roots-strip { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .roots-strip .stat { padding: 28px; min-height: 190px; }
+    .roots-strip .stat strong { font-size: 1.9rem; }
+    .roots-strip .stat span { font-size: 1rem; line-height: 1.55; }
+
+    section { padding: 96px 0; }
+    .section-title { max-width: 860px; margin-bottom: 42px; }
+    .section-title.center { text-align: center; margin-left: auto; margin-right: auto; }
+    .section-kicker { display: inline-flex; margin-bottom: 12px; color: var(--accent); font-weight: 950; text-transform: uppercase; letter-spacing: .09em; font-size: .82rem; }
+    .section-title h2 { font-size: clamp(2.1rem, 4.3vw, 3.7rem); line-height: 1.02; margin: 0 0 16px; letter-spacing: -0.065em; color: var(--ink); }
+    .section-title p { color: var(--muted); font-size: 1.12rem; margin: 0; }
+
+    .grid-2, .grid-3, .grid-4 { display: grid; gap: 20px; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+    .card, .program-item, details, .long-copy, .timeline-item, .quote { background: rgba(255,255,255,0.92); border: 1px solid var(--line); box-shadow: var(--shadow-soft); }
+    .card { border-radius: var(--radius-lg); padding: 28px; transition: transform .25s ease, box-shadow .25s ease; border-top: 4px solid rgba(217,151,82,0.22); position: relative; overflow: hidden; }
+    .card h3 { margin: 0 0 12px; color: var(--ink); font-size: 1.18rem; }
+    .card p { margin: 0; color: var(--muted); }
+
+    .story { display: grid; grid-template-columns: 0.86fr 1.14fr; gap: 42px; align-items: start; }
+    .quote { background: linear-gradient(135deg, #ffffff, var(--orange-soft)); border-radius: 14px; padding: 34px; border-left: 6px solid var(--accent); }
+    .quote p { font-size: 1.38rem; font-weight: 950; line-height: 1.32; color: var(--accent); margin: 0 0 18px; letter-spacing: -0.025em; }
+    .quote small { color: var(--muted); font-weight: 900; }
+    .long-copy { border-radius: 14px; padding: 32px; }
+    .long-copy p { color: #37474f; margin-bottom: 18px; }
+
+    .about-expand { margin-top: 22px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: rgba(255,255,255,0.92); box-shadow: var(--shadow-soft); }
+    .about-expand summary { padding: 18px 22px; font-size: 1rem; font-weight: 900; color: var(--accent); background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(250,244,236,0.92)); }
+    .about-expand-content { padding: 24px; border-top: 1px solid var(--line); }
+
+    .timeline { display: grid; gap: 16px; margin-top: 22px; }
+    .timeline-item { display: grid; grid-template-columns: 118px 1fr; gap: 18px; padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent); }
+    .year { font-weight: 950; color: var(--accent); }
+
+    .highlight { background: linear-gradient(180deg, #fffaf3 0%, #f8f2e8 100%); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .dark-section { background: linear-gradient(135deg, #3f7c74 0%, #2d5f59 100%); color: var(--white); }
+    .dark-section .section-title h2, .dark-section .card h3 { color: var(--white); }
+    .dark-section .section-kicker { color: #f7d7a8; }
+    .dark-section .section-title p, .dark-section .card p { color: rgba(255,255,255,0.82); }
+    .dark-section .card { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.16); box-shadow: none; }
+
+    .program-category { margin-bottom: 52px; }
+    .category-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--line); padding-bottom: 18px; }
+    .category-head h3 { font-size: clamp(1.6rem, 3vw, 2.35rem); margin: 0; letter-spacing: -0.045em; color: var(--ink); }
+    .category-head span { color: var(--accent); font-weight: 950; text-transform: uppercase; letter-spacing: .07em; font-size: .86rem; }
+    .program-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .program-item { border-radius: 18px; padding: 24px; transition: transform .25s ease, box-shadow .25s ease, background .25s ease; position: relative; overflow: hidden; }
+    .program-item:hover { background: rgba(255,255,255,0.98); }
+    .program-item::after { content: ""; position: absolute; inset: auto 0 0 0; height: 4px; background: linear-gradient(90deg, var(--accent), var(--orange)); opacity: .85; }
+    .program-item strong { display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center; border-radius: 8px; background: var(--orange-soft); color: var(--accent); margin-bottom: 14px; font-weight: 950; border: 1px solid rgba(217,151,82,0.16); }
+    .program-item h4 { margin: 0 0 8px; font-size: 1.08rem; line-height: 1.28; color: var(--ink); }
+    .program-item p { margin: 0; color: var(--muted); }
+    .program-detail-link { margin-top: 18px; display: inline-flex; width: fit-content; min-height: 44px; padding: 11px 16px; font-size: 0.9rem; border-radius: 10px; }
+
+    .gallery-slider { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; scrollbar-width: thin; }
+    .gallery-slide { position: relative; min-width: 340px; height: 460px; overflow: hidden; border-radius: 24px; scroll-snap-align: start; background: linear-gradient(135deg, #eef7f5, var(--orange-soft)); border: 1px solid var(--line); box-shadow: var(--shadow-soft); flex-shrink: 0; }
+    .gallery-slide.large { min-width: 520px; }
+    .gallery-slide img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
+    .gallery-slide:hover img { transform: scale(1.04); }
+    .gallery-overlay { position: absolute; inset: auto 18px 18px 18px; padding: 18px; border-radius: 18px; background: rgba(255,255,255,0.86); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.36); }
+    .gallery-overlay strong { display: block; color: var(--ink); font-size: 1.02rem; margin-bottom: 6px; }
+    .gallery-overlay span { color: var(--muted); font-size: .88rem; font-weight: 700; }
+
+    .brochure-wrap { background: rgba(255,255,255,0.92); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); }
+    .brochure-top { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 24px 28px; border-bottom: 1px solid var(--line); background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(250,244,236,0.92)); }
+    .brochure-top h3 { margin: 0 0 6px; color: var(--ink); font-size: 1.3rem; }
+    .brochure-top p { margin: 0; color: var(--muted); }
+    .brochure-frame { width: 100%; height: 820px; border: 0; background: #f3f4f6; }
+
+    .faq { display: grid; gap: 14px; }
+    details { border-radius: 16px; padding: 20px 22px; transition: border-color .2s ease, box-shadow .2s ease; }
+    details[open] { border-color: rgba(217,119,69,0.22); box-shadow: 0 18px 40px rgba(86,76,60,0.09); }
+    summary { cursor: pointer; font-weight: 950; color: var(--ink); list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; width: 28px; height: 28px; display: inline-grid; place-items: center; border-radius: 999px; background: var(--accent-soft); color: var(--accent); flex: 0 0 auto; transition: transform .2s ease; }
+    details[open] summary::after { content: "−"; transform: rotate(180deg); }
+    details p { color: var(--muted); margin: 12px 0 0; }
+
+    .cta { text-align: center; position: relative; overflow: hidden; background: radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 28%), linear-gradient(135deg, #3f7c74 0%, #2d5f59 100%); color: var(--white); border-radius: 32px; padding: 72px 30px; box-shadow: var(--shadow); isolation: isolate; }
+    .cta h2 { color: var(--white); font-size: clamp(2rem, 4vw, 3.45rem); line-height: 1.02; letter-spacing: -0.06em; margin: 0 0 16px; }
+    .cta p { color: rgba(255,255,255,0.84); max-width: 790px; margin: 0 auto 30px; font-size: 1.12rem; }
+    .cta-logo { width: 108px; max-height: 96px; object-fit: contain; margin: 0 auto 22px; display: block; background: rgba(255,255,255,0.92); border-radius: 10px; padding: 10px; }
+
+    footer { padding: 38px 0; color: #64748b; font-weight: 850; background: rgba(255,255,255,0.72); backdrop-filter: blur(12px); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 26px; }
+
+    @media (max-width: 1060px) {
+      nav ul { display: none; }
+      .hero-inner { grid-template-columns: 1fr; padding: 48px; gap: 34px; }
+      .story, .grid-2 { grid-template-columns: 1fr; }
+      .grid-4, .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .roots-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+
+    @media (max-width: 720px) {
+      .container { width: min(100% - 24px, 1180px); }
+      .nav { min-height: 68px; gap: 10px; }
+      .brand { gap: 10px; min-width: 0; }
+      .brand-logo { width: 44px; height: 44px; border-radius: 10px; padding: 5px; }
+      .brand-text span:first-child { font-size: .92rem; line-height: 1.05; }
+      .brand small { font-size: .78rem; }
+      .hero { padding-top: 14px; }
+      .hero-shell { border-radius: 20px; box-shadow: 0 12px 32px rgba(86,76,60,0.10); }
+      .hero-inner { display: flex; flex-direction: column; padding: 26px 18px 20px; gap: 22px; }
+      .eyebrow { font-size: .68rem; line-height: 1.25; letter-spacing: .06em; padding: 8px 11px; }
+      .hero h1 { font-size: clamp(2.75rem, 16vw, 4.05rem); line-height: .92; letter-spacing: -.075em; margin: 18px 0 16px; }
+      .hero h1 span { white-space: normal; }
+      .lead { font-size: 1rem; line-height: 1.55; margin-bottom: 0; }
+      .actions { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 18px; }
+      .btn { width: 100%; min-height: 50px; padding: 13px 16px; text-align: center; }
+      .quick-points, .grid-3, .grid-4, .program-grid, .mini-card-grid, .stats-strip, .roots-strip { grid-template-columns: 1fr; }
+      .hero-card { padding: 12px; border-radius: 18px; }
+      .portrait { min-height: auto; padding: 26px 18px; border-radius: 16px; }
+      .portrait-logo { width: 178px; height: 178px; border-radius: 14px; border-width: 6px; margin-bottom: 20px; }
+      .portrait strong { font-size: 2.25rem; }
+      section { padding: 62px 0; }
+      .section-title.center { text-align: left; }
+      .section-title h2 { font-size: clamp(2rem, 11vw, 2.75rem); line-height: 1.04; letter-spacing: -.055em; }
+      .story { grid-template-columns: 1fr; gap: 18px; }
+      .quote, .long-copy, .card, .program-item { padding: 20px; }
+      .timeline-item { grid-template-columns: 1fr; gap: 6px; padding: 16px; }
+      .category-head { align-items: start; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+      .category-head h3 { font-size: 1.55rem; line-height: 1.1; }
+      .gallery-slide, .gallery-slide.large { min-width: 82vw; height: 320px; }
+      .brochure-top { flex-direction: column; align-items: flex-start; padding: 20px; }
+      .brochure-frame { height: 520px; }
+      .cta { border-radius: 20px; padding: 38px 18px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; font-size: .92rem; }
+      .social-links { width: 100%; }
+      .social-link.full, .social-link { height: 44px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="progress-bar" id="progressBar"></div>
+
+  <header>
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="Domov">
+        <img src="logo.png" alt="Logo Aktívne pre Svit" class="brand-logo" />
+        <span class="brand-text">
+          <span>Ing. Róbert Valčák</span>
+          <small>Aktívne pre Svit</small>
+        </span>
+      </a>
+
+      <nav aria-label="Hlavná navigácia">
+        <ul>
+          <li><a href="#omne">O mne</a></li>
+          <li><a href="#korene">Korene</a></li>
+          <li><a href="#hodnoty">Hodnoty</a></li>
+          <li><a href="#preco">Prečo kandidujem</a></li>
+          <li><a href="#program">Program</a></li>
+          <li><a href="#galeria">Galéria</a></li>
+          <li><a href="#brozura">Brožúrka</a></li>
+          <li><a class="nav-cta" href="#kontakt">Kontakt</a></li>
+          <li><a class="social-link social-external" href="https://www.facebook.com/profile.php?id=61575392084556" target="_top" aria-label="Facebook">FB</a></li>
+          <li><a class="social-link social-external" href="https://www.instagram.com/valcakrobert/" target="_top" aria-label="Instagram">IG</a></li>
+          <li><a class="social-link" href="mailto:info@aktivnepresvit.sk" aria-label="E-mail">Mail</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-shell">
+          <div class="hero-inner">
+            <div class="hero-copy">
+              <div>
+                <div class="eyebrow">Nezávislý kandidát na poslanca do mestského zastupiteľstva</div>
+                <h1>Aktívne <span>pre Svit</span></h1>
+                <p class="lead">Svit je môj domov, komunita a mesto s výnimočnou históriou. Chcem priniesť energiu, pracovitosť a konkrétne návrhy, ktoré zlepšia každodenný život ľudí.</p>
+              </div>
+
+              <div>
+                <div class="actions">
+                  <a class="btn btn-primary" href="#program">Pozrieť program</a>
+                  <a class="btn btn-outline" href="#omne">Spoznať môj príbeh</a>
+                </div>
+                <div class="quick-points">
+                  <div class="quick-point">Bezpečný a čistý Svit</div>
+                  <div class="quick-point">Mládež, šport a seniori</div>
+                  <div class="quick-point">Rozumný rozvoj mesta</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-card" aria-label="Kandidát">
+              <div class="portrait">
+                <div>
+                  <img src="moja-fotka.jpg" alt="Ing. Róbert Valčák" class="portrait-logo" />
+                  <strong>Ing. Róbert<br />Valčák</strong>
+                  <p>Kandidát, ktorý chce pracovať rozumne, slušne a s rešpektom k ľuďom vo Svite.</p>
+                </div>
+              </div>
+              <div class="mini-card-grid">
+                <div class="mini-card">Dobrovoľníctvo</div>
+                <div class="mini-card">Komunitný život</div>
+                <div class="mini-card">Mládež a CVČ</div>
+                <div class="mini-card">Medzigeneračná spolupráca</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-strip">
+          <div class="stat"><strong>2018</strong><span>od roku 2018 som súčasťou príbehu podujatia Horal</span></div>
+          <div class="stat"><strong>CVČ</strong><span>aktivity pre deti, mládež a tábory</span></div>
+          <div class="stat"><strong>JDS</strong><span>spolupráca so seniormi a komunitou</span></div>
+          <div class="stat"><strong>Klub absolventov Baťovej školy Svit</strong><span>Spájam sa s ľuďmi, ktorým záleží na histórii, odkaze a budúcnosti mesta Svit.</span></div>
+          <div class="stat"><strong>Športuj srdcom o.z.</strong><span>Podpora športu, dobrovoľníctva a charitatívnych aktivít, ktoré pomáhajú ľuďom.</span></div>
+          <div class="stat"><strong>Svit</strong><span>domov, ku ktorému patrím</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="omne">
+      <div class="container">
+        <div class="quote" style="margin-bottom:32px; width:100%; max-width:100%; display:block;">
+          <p>„Svit pre mňa nie je len adresa. Je to domov, komunita a miesto, ktorému chcem naďalej pomáhať.“</p>
+          <small>Ing. Róbert Valčák</small>
+        </div>
+
+        <div class="section-title center">
+          <span class="section-kicker">Osobný príbeh</span>
+          <h2>O mne</h2>
+          <p>Môj vzťah k mestu sa začal už v detstve a postupne sa z neho stala aktívna služba komunite.</p>
+        </div>
+
+        <div class="long-copy">
+          <p>Môj aktívny vzťah k mestu Svit sa začal už na základnej škole na Mierovej ulici. Vďaka RNDr. Danici Božovej som sa dostal na prvé súťaže, kde prišli aj prvé úspechy. Práve tie mi otvorili ďalšie dvere a priviedli ma do Centra voľného času Svit.</p>
+
+          <p>Neskôr ma Mgr. Miroslav Jurčák pozval medzi seniorov na stretnutie pri studničke, kde som rozprával o flóre na Babe. Táto skúsenosť ma priblížila ku komunitnému životu mesta a ukázala mi, aké dôležité je prepájať generácie.</p>
+
+          <details class="about-expand">
+            <summary>Prečítať celý môj príbeh</summary>
+
+            <div class="about-expand-content">
+              <p>Môj aktívny vzťah k mestu Svit sa začal už na základnej škole na Mierovej ulici. Vďaka RNDr. Danici Božovej som sa dostal na prvé súťaže, kde prišli aj prvé úspechy. Práve tie mi otvorili ďalšie dvere. Zároveň som sa vďaka nej stal členom krúžku v Centre voľného času Svit, čo ma ešte viac priblížilo k aktívnemu životu v meste a práci s ľuďmi.</p>
+
+              <p>Neskôr ma oslovil vtedajší predseda Jednoty dôchodcov Slovenska – JDS Svit Mgr. Miroslav Jurčák a pozval ma na stretnutie pri studničke, kde som seniorom rozprával o flóre, ktorá sa vyskytuje na Babe. Vďaka tomu som sa dostal bližšie nielen k seniorom, ale aj ku komunitnému životu v meste.</p>
+
+              <p>Práve cez Miroslava Jurčáka som dostal ponuku prísť pomôcť ako dobrovoľník na cyklistické podujatie Horal. Prvýkrát som pri Horale pomáhal v roku 2018. Hoci som najskôr váhal, rozhodol som sa ísť – a bolo to jedno z rozhodnutí, ktoré ma výrazne posunuli ďalej. Odvtedy som súčasťou organizačného tímu Horalu.</p>
+
+              <p>O rok neskôr som sa cez Centrum voľného času Svit zapojil aj do organizačného tímu Horal Junior, ktorý CVČ zastrešuje. Som rád, že môžem byť súčasťou podujatia, ktoré vedie deti a mladých ľudí k športu, pohybu a zdravému životnému štýlu.</p>
+
+              <p>Tieto skúsenosti ma naučili, že za každým úspešným podujatím stojí tímová práca, ochota pomôcť a ľudia, ktorým záleží na svojom meste.</p>
+
+              <p>Neskôr som bol oslovený Centrom voľného času, či by som nechcel pomáhať aj pri ďalších aktivitách CVČ. Na podujatí MDD som sa následne stretol s členmi Mládežníckeho parlamentu mesta Svit, ktorí mi ponúkli členstvo. Aj keď som mal vtedy pocit, že som skôr tichší typ človeka, prijal som túto výzvu.</p>
+
+              <p>V mládežníckom parlamente som spoznal Mgr. Janku Koreňovú, vtedajšiu koordinátorku. Nasledovali školenia, oficiálne založenie parlamentu, predstavenie pani primátorke a množstvo aktivít pre mesto. Bola to skúsenosť, ktorá ma naučila zodpovednosti, spolupráci a tomu, že aj mladí ľudia môžu mať hlas pri rozvoji mesta.</p>
+
+              <p>Jednou z aktivít bola aj príprava klziska pri Mladosti. Prvý rok ho zastrešoval mládežnícky parlament, ďalšie roky som mal organizáciu na starosti ja spolu s dobrovoľníkmi. Som rád, že sme vytvorili priestor, kde mohli tráviť čas deti, mladí aj rodiny.</p>
+
+              <p>Ako brigádnik som sa podieľal aj na priebehu letných táborov v CVČ, kde som spoznal manželov Alicu Skokanovú a Jozefa Skokana. S Jozefom Skokanom už približne 7 až 8 rokov spolupracujem aj na cyklistickom tábore. Vďaka tejto skúsenosti som mal možnosť spoznať okolie Svitu z iného pohľadu – cez šport, prírodu a aktívny pohyb.</p>
+
+              <p>Postupne som sa začal intenzívnejšie zaujímať o dianie v meste a začal som navštevovať mestské zastupiteľstvá. Vďaka CVČ som spoznal aj Ľubku Jančíkovú, vtedajšiu referentku kultúrno-výchovnej činnosti, s ktorou sa nám podarilo rozbehnúť veľmi dobrú spoluprácu.</p>
+
+              <p>Nasledovali ďalšie aktivity, najmä medzigeneračná spolupráca medzi JDS Svit a Mládežníckym parlamentom mesta Svit. Stretávali sme sa na športových hrách seniorov, stolnotenisových turnajoch v telocvični CVČ aj pri spoločných stretnutiach pri studničke. Tieto skúsenosti mi ukázali, aké dôležité je prepájať generácie a budovať vzájomný rešpekt.</p>
+
+              <p>Počas obdobia pandémie COVID-19 som sa zapojil do dobrovoľníckej pomoci, ktorú zabezpečovalo mesto Svit v spolupráci s Centrom voľného času Svit. Pomáhal som pri šití ochranných rúšok a následne aj pri ich distribúcii obyvateľom mesta. Toto obdobie mi ešte viac ukázalo, aký dôležitý je záujem o druhých, spolupráca a solidarita.</p>
+
+              <p>Popri aktivitách v meste som chodieval pomáhať aj Klubu absolventov Baťovej školy Svit na ich výročné schôdze, kde som ako mladý muž nastupoval v uniforme. O niekoľko rokov po prvom oslovení som dostal pozvánku stať sa členom tohto klubu. Od roku 2023 som jeho hrdým členom.</p>
+
+              <p>Zapájal som sa aj do charitatívneho podujatia Memoriál Jána Svočáka, ktoré organizuje Športuj srdcom o.z. Vážim si, že šport môže spájať ľudí a zároveň pomáhať dobrej veci. Od roku 2025 som členom tohto občianskeho združenia.</p>
+
+              <p>Pred dvoma rokmi sa vymenilo vedenie CVČ, kde brigádujem. Bolo to dobré rozhodnutie, pretože som mal možnosť spoznať PaedDr. Máriu Šofranko. V CVČ sa stretla výborná skupina ľudí – Mária Šofranko, Alica Skokanová, Jozef Skokan a ja – a spoločne sa nám podarilo zrealizovať veľa dobrých vecí.</p>
+
+              <p>Popri tom všetkom sa mi podarilo absolvovať Strednú priemyselnú školu techniky a dizajnu v Poprade a následne ukončiť bakalárske štúdium na Technickej univerzite v Košiciach v odbore priemyselná mechatronika. Počas vysokoškolského štúdia som denne dochádzal a každý deň sa vracal domov do Svitu, takže som zostal v každodennom kontakte so životom nášho mesta. Po ukončení inžinierskeho štúdia chcem svoje vedomosti a skúsenosti ďalej využívať doma, v regióne, z ktorého pochádzam.</p>
+
+              <p>Keď sa dnes obzriem späť, uvedomujem si, že všetky tieto skúsenosti ma formovali nielen ako človeka, ale aj ako občana, ktorému záleží na svojom meste. Naučili ma, že výsledky neprichádzajú samy od seba, ale vznikajú tam, kde ľudia spolupracujú, rešpektujú sa a sú ochotní priložiť ruku k dielu. Svit pre mňa nie je len miesto, kde bývam. Je to domov, komunita a mesto plné schopných ľudí. Preto chcem aj naďalej pomáhať tam, kde to má zmysel, podporovať dobré myšlienky a byť súčasťou jeho budúcnosti.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item"><div class="year">Základná škola</div><div>Prvé súťaže, prvé úspechy a začiatok aktívneho vzťahu k mestu.</div></div>
+          <div class="timeline-item"><div class="year">CVČ Svit</div><div>Krúžky, aktivity, práca s deťmi, tábory a dobrovoľnícka pomoc.</div></div>
+          <div class="timeline-item"><div class="year">2018</div><div>Začiatok pomoci na podujatí Horal a neskôr zapojenie do Horalu Junior.</div></div>
+          <div class="timeline-item"><div class="year">Seniori</div><div>Spolupráca s JDS Svit a medzigeneračné podujatia.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="korene" class="highlight">
+      <div class="container">
+        <div class="section-title center">
+          <span class="section-kicker">Odkaz rodiny</span>
+          <h2>Rodinné korene vo Svite</h2>
+          <p>Môj vzťah k mestu má hlboký základ. Moja rodina bola so Svitom spätá už od jeho začiatkov – cez prácu, šport aj spoločenský život.</p>
+        </div>
+        <div class="stats-strip roots-strip">
+          <div class="stat"><strong>Blanka Novotná</strong><span>Moja prastará mama prišla do Svitu ako šestnásťročná v roku 1939 a patrila k prvým generáciám obyvateľov mesta.</span></div>
+          <div class="stat"><strong>Augustín Jurčák</strong><span>Môj prastarý otec pracoval vo firme Baťa a hrával futbal za AC Svit. Rodina Jurčákovcov bola súčasťou športového života mesta.</span></div>
+          <div class="stat"><strong>Mgr. Miroslav Jurčák</strong><span>Dlhé roky sa venoval komunitnému životu, práci so seniormi a športu. Ako basketbalový tréner vychoval množstvo mladých športovcov a aktívne prepájal generácie vo Svite.</span></div>
+          <div class="stat"><strong>Štefan Preisler</strong><span>Patril medzi absolventov Baťovej školy práce v Zlíne a do Svitu prišiel práve zo Zlína pomáhať budovať nové mesto, jeho komunitný aj športový život.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hodnoty">
+      <div class="container">
+        <div class="section-title center">
+          <span class="section-kicker">Na čom staviam</span>
+          <h2>Hodnoty, s ktorými kandidujem</h2>
+          <p>Nechcem stavať kampaň na prázdnych sľuboch. Dôležitá je pre mňa slušnosť, konkrétna práca a ochota počúvať ľudí.</p>
+        </div>
+        <div class="stats-strip roots-strip">
+          <div class="stat"><strong>Slušnosť</strong><span>Verejná služba má byť postavená na rešpekte, korektnej komunikácii a zodpovednosti voči obyvateľom.</span></div>
+          <div class="stat"><strong>Pracovitosť</strong><span>Výsledky nevznikajú samy od seba. Prichádzajú tam, kde ľudia pravidelne pracujú a dotiahnu veci do konca.</span></div>
+          <div class="stat"><strong>Spolupráca</strong><span>Svit sa môže rozvíjať len vtedy, keď spolupracujú generácie, školy, kluby, spolky, mesto aj obyvatelia.</span></div>
+          <div class="stat"><strong>Konkrétnosť</strong><span>Podporujem praktické riešenia, ktoré reagujú na reálne potreby ľudí v uliciach, školách, športoviskách a komunitách.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="preco" class="dark-section">
+      <div class="container">
+        <div class="section-title">
+          <span class="section-kicker">Motivácia</span>
+          <h2>Prečo kandidujem</h2>
+          <p>Do verejného života vstupujem s rešpektom a pokorou – nie ako kariérny politik, ale ako človek zo Svitu, ktorý dlhodobo vidí život mesta zvnútra.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card"><h3>Chcem pracovať pre ľudí</h3><p>Podporovať riešenia, ktoré zlepšujú každodenný život obyvateľov – bezpečnosť, verejný priestor, služby, šport, školstvo aj komunitu.</p></article>
+          <article class="card"><h3>Chcem prepájať generácie</h3><p>Skúsenosti zo spolupráce mladých ľudí a seniorov mi ukázali, že mesto je silnejšie vtedy, keď sa ľudia poznajú, rešpektujú a spolupracujú.</p></article>
+          <article class="card"><h3>Chcem prinášať nové impulzy</h3><p>Svit má silnú históriu, dobrú polohu a schopných ľudí. Potrebujeme však premyslené projekty, otvorenú komunikáciu a aktívny prístup.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="program">
+      <div class="container">
+        <div class="section-title center">
+          <span class="section-kicker">Priority</span>
+          <h2>Komplexný program pre Svit</h2>
+          <p>Program vychádza z konkrétnych potrieb mesta Svit. Zameriava sa na verejný priestor, bezpečnosť, komunitný život, šport, kultúru, bývanie, zdravotníctvo a transparentnú samosprávu.</p>
+        </div>
+
+        <div class="program-category">
+          <div class="category-head">
+            <h3>Rozvoj mesta a infraštruktúra</h3>
+            <span>verejný priestor</span>
+          </div>
+
+          <div class="program-grid">
+            <article class="program-item">
+              <strong>1</strong>
+              <h4>Využitie železničnej stanice na kultúrne a komunitné centrum</h4>
+              <p>Železničná stanica je vstupnou bránou do mesta a má veľký nevyužitý potenciál. Podporím rokovania o využití časti budovy pre múzeum, výstavy, galériu, koncerty, prednášky či komunitné aktivity.</p>
+              <a class="btn btn-outline program-detail-link" href="program1.html">Podrobnosti projektu</a>
+            </article>
+
+            <article class="program-item">
+              <strong>2</strong>
+              <h4>Pokračovanie spoločného chodníka pre chodcov a cyklistov</h4>
+              <p>Bezpečný pohyb chodcov a cyklistov musí byť jednou z priorít mesta. Podporím pokračovanie chodníka popri ceste I/18 smerom po Záhradnú ulicu.</p>
+              <a class="btn btn-outline program-detail-link" href="program2.html">Podrobnosti projektu</a>
+            </article>
+
+            <article class="program-item">
+              <strong>3</strong>
+              <h4>Postupná rekonštrukcia chodníkov a miestnych ciest</h4>
+              <p>Chodníky a cesty používame každý deň, preto musia byť bezpečné a udržiavané. Chcem presadzovať plán postupnej obnovy podľa stavu a potrieb jednotlivých lokalít.</p>
+              <a class="btn btn-outline program-detail-link" href="program3.html">Podrobnosti projektu</a>
+            </article>
+
+            <article class="program-item">
+              <strong>4</strong>
+              <h4>Viac parkovacích miest a rozumné parkovanie</h4>
+              <p>Parkovanie je každodenný problém mnohých obyvateľov. Chcem podporiť nové parkovacie miesta tam, kde je to možné, a lepšiu organizáciu parkovania najmä na sídliskách.</p>
+              <a class="btn btn-outline program-detail-link" href="program4.html">Podrobnosti projektu</a>
+            </article>
+
+            <article class="program-item">
+              <strong>5</strong>
+              <h4>Viac zelene a krajší verejný priestor</h4>
+              <p>Mesto má byť príjemné na život. Chcem podporiť výsadbu stromov, obnovu zelene, lavičky, oddychové zóny, úpravu vnútroblokov a starostlivosť o verejné priestory.</p>
+              <a class="btn btn-outline program-detail-link" href="program5.html">Podrobnosti projektu</a>
+            </article>
+          </div>
+        </div>
+
+        <div class="program-category">
+          <div class="category-head">
+            <h3>Mladí, rodiny a bývanie</h3>
+            <span>budúcnosť mesta</span>
+          </div>
+
+          <div class="program-grid">
+            <article class="program-item">
+              <strong>6</strong>
+              <h4>Centrum pre mladých</h4>
+              <p>Mladí ľudia potrebujú priestor, kde sa môžu stretávať, tvoriť a rozvíjať. Chcem podporiť vznik moderného centra pre mladých s priestorom na workshopy, diskusie, hudbu, tvorbu a komunitné aktivity.</p>
+              <a class="btn btn-outline program-detail-link" href="program6.html">Podrobnosti projektu</a>
+            </article>
+
+            <article class="program-item">
+              <strong>7</strong>
+              <h4>Nové priestory pre Centrum voľného času</h4>
+              <p>CVČ je dôležité miesto pre deti, mládež aj rodiny. Podporím riešenie nových alebo modernizovaných priestorov pre kvalitnejšie krúžky, tábory a voľnočasové aktivity.</p>
+              <a class="btn btn-outline program-detail-link" href="program7.html">Podrobnosti projektu</a>
+            </article>
+
+            <article class="program-item">
+              <strong>8</strong>
+              <h4>Rozumný rozvoj mesta bez zbytočného zahusťovania</h4>
+              <p>Svit má vysokú hustotu osídlenia, preto musí byť každý nový rozvoj premyslený a citlivý. Som proti nekoncepčnému zahusťovaniu výstavby, ktoré uberá zeleň, zhoršuje parkovanie a zvyšuje tlak na infraštruktúru.</p>
+              <a class="btn btn-outline program-detail-link" href="program8.html">Podrobnosti projektu</a>
+            </article>
+          </div>
+        </div>
+
+        <div class="program-category">
+          <div class="category-head">
+            <h3>Šport a voľný čas</h3>
+            <span>aktívny život</span>
+          </div>
+
+          <div class="program-grid">
+            <article class="program-item">
+              <strong>9</strong>
+              <h4>Využitie Bagroviska</h4>
+              <p>Bagrovisko má veľký potenciál ako oddychová a športová zóna. Chcem podporiť diskusiu o jeho revitalizácii, plážových plochách, športoviskách, chodníkoch, parkovaní a službách.</p>
+              <a class="btn btn-outline program-detail-link" href="program9.html">Podrobnosti projektu</a>
+            </article>
+          </div>
+        </div>
+
+        <div class="program-category">
+          <div class="category-head">
+            <h3>Seniori a komunita</h3>
+            <span>spájanie generácií</span>
+          </div>
+
+          <div class="program-grid">
+            <article class="program-item">
+              <strong>10</strong>
+              <h4>Klub seniorov / komunitné centrum</h4>
+              <p>Seniori si zaslúžia dôstojný priestor na stretávanie a aktívny život. Podporím klub seniorov alebo komunitné centrum pre prednášky, cvičenia, tvorivé aktivity a spoločenské stretnutia.</p>
+              <a class="btn btn-outline program-detail-link" href="program10.html">Podrobnosti projektu</a>
+            </article>
+
+            <article class="program-item">
+              <strong>11</strong>
+              <h4>Rekonštrukcia Kultúrneho domu Pod Skalkou</h4>
+              <p>Kultúrny dom Pod Skalkou môže byť centrom spoločenského života tejto časti mesta. Podporím jeho obnovu, modernizáciu sály, techniky a zázemia.</p>
+              <a class="btn btn-outline program-detail-link" href="program11.html">Podrobnosti projektu</a>
+            </article>
+          </div>
+        </div>
+
+        <div class="program-category">
+          <div class="category-head">
+            <h3>Bezpečnosť a služby</h3>
+            <span>zdravotníctvo, školstvo, samospráva</span>
+          </div>
+
+          <div class="program-grid">
+            <article class="program-item">
+              <strong>12</strong>
+              <h4>Moderná poliklinika v budove bývalej štátnej polície</h4>
+              <p>Zdravotná starostlivosť potrebuje dôstojné priestory. Chcem otvoriť odbornú diskusiu o rekonštrukcii bývalej budovy štátnej polície na modernú polikliniku.</p>
+              <a class="btn btn-outline program-detail-link" href="program12.html">Podrobnosti projektu</a>
+            </article>
+
+            <article class="program-item">
+              <strong>13</strong>
+              <h4>Premena súčasnej polikliniky na nájomné bývanie</h4>
+              <p>Ak by sa zdravotné služby presunuli do nových priestorov, súčasná poliklinika by mohla dostať nové využitie. Jednou z možností je prestavba na mestské nájomné bývanie.</p>
+              <a class="btn btn-outline program-detail-link" href="program13.html">Podrobnosti projektu</a>
+            </article>
+
+            <article class="program-item">
+              <strong>14</strong>
+              <h4>Baťov domček v Červenej kolónii</h4>
+              <p>Baťova história je dôležitou súčasťou identity Svitu. Baťov domček môže slúžiť ako informačné centrum, časť mestského múzea, priestor pre školy, exkurzie a menšie výstavy.</p>
+              <a class="btn btn-outline program-detail-link" href="program14.html">Podrobnosti projektu</a>
+            </article>
+
+            <article class="program-item">
+              <strong>15</strong>
+              <h4>Dokončenie rekonštrukcie školy na Mierovej ulici</h4>
+              <p>Podporím pokračovanie rekonštrukcie školy na Mierovej ulici, najmä zníženie energetickej náročnosti pavilónov a prerobenie chodby do telocvične.</p>
+              <a class="btn btn-outline program-detail-link" href="program15.html">Podrobnosti projektu</a>
+            </article>
+
+            <article class="program-item">
+              <strong>16</strong>
+              <h4>Transparentná samospráva a lepšia komunikácia</h4>
+              <p>Mesto má s občanmi komunikovať jasne a otvorene. Podporím lepšiu informovanosť o investíciách, rozpočte, opravách, projektoch a rozhodnutiach mestského zastupiteľstva.</p>
+              <a class="btn btn-outline program-detail-link" href="program16.html">Podrobnosti projektu</a>
+            </article>
+
+            <article class="program-item">
+              <strong>17</strong>
+              <h4>Podpora miestnych komunít, služieb a podnikateľov</h4>
+              <p>Silné mesto tvoria ľudia, spolky, dobrovoľníci, služby aj miestni podnikatelia. Chcem podporovať spoluprácu mesta s komunitami, občianskymi združeniami, športovými klubmi, kultúrnymi organizáciami, seniormi, mladými ľuďmi aj malými prevádzkami.</p>
+              <a class="btn btn-outline program-detail-link" href="program17.html">Podrobnosti projektu</a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria" class="highlight">
+      <div class="container">
+        <div class="section-title center">
+          <span class="section-kicker">Galéria</span>
+          <h2>Zo života mesta a komunity</h2>
+          <p>Miesto pre fotografie zo Svitu, dobrovoľníckych aktivít, športových podujatí, CVČ, Horalu, stretnutí so seniormi a komunitného života.</p>
+        </div>
+        <div class="gallery-slider">
+          <figure class="gallery-slide large"><img src="galeria-1.jpg" alt="Dobrovoľnícke aktivity vo Svite" /><figcaption class="gallery-overlay"><strong>Dobrovoľníctvo a komunita</strong><span>Aktivity, ktoré spájajú ľudí vo Svite</span></figcaption></figure>
+          <figure class="gallery-slide"><img src="galeria-2.jpg" alt="Športové podujatia vo Svite" /><figcaption class="gallery-overlay"><strong>Šport a pohyb</strong><span>Horal, mládež a aktívny život</span></figcaption></figure>
+          <figure class="gallery-slide"><img src="galeria-3.jpg" alt="Centrum voľného času Svit" /><figcaption class="gallery-overlay"><strong>CVČ a mladí</strong><span>Priestor pre deti a talenty</span></figcaption></figure>
+          <figure class="gallery-slide"><img src="galeria-4.jpg" alt="Seniori a medzigeneračné stretnutia" /><figcaption class="gallery-overlay"><strong>Medzigeneračné aktivity</strong><span>Spájanie mladých a seniorov</span></figcaption></figure>
+          <figure class="gallery-slide large"><img src="galeria-5.jpg" alt="Mesto Svit" /><figcaption class="gallery-overlay"><strong>Svit ako domov</strong><span>Mesto s históriou a budúcnosťou</span></figcaption></figure>
+          <figure class="gallery-slide"><img src="galeria-6.jpg" alt="Komunitné podujatia" /><figcaption class="gallery-overlay"><strong>Komunitný život</strong><span>Ľudia, ktorí tvoria atmosféru mesta</span></figcaption></figure>
+          <figure class="gallery-slide"><img src="galeria-7.jpg" alt="Práca s mládežou" /><figcaption class="gallery-overlay"><strong>Mládež a aktivity</strong><span>Energia a nové impulzy</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="brozura">
+      <div class="container">
+        <div class="section-title center">
+          <span class="section-kicker">Brožúrka kampane</span>
+          <h2>Program a vízia pre Svit</h2>
+          <p>Celá brožúrka kampane dostupná priamo na stránke aj na stiahnutie vo formáte PDF.</p>
+        </div>
+        <div class="brochure-wrap">
+          <div class="brochure-top">
+            <div>
+              <h3>Aktívne pre Svit — brožúrka kandidáta</h3>
+              <p>Program, hodnoty, príbeh a vízia rozvoja mesta Svit.</p>
+            </div>
+            <a class="btn btn-primary" href="brozurka.pdf" download>Stiahnuť PDF</a>
+          </div>
+          <iframe class="brochure-frame" src="brozurka.pdf" title="Brožúrka kampane"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="highlight">
+      <div class="container">
+        <div class="section-title center">
+          <span class="section-kicker">Spôsob práce</span>
+          <h2>Ako chcem pracovať ako poslanec</h2>
+          <p>Poslanecká práca nie je len hlasovanie na zasadnutí. Je to komunikácia s ľuďmi, sledovanie problémov v teréne a hľadanie riešení, ktoré majú reálny zmysel.</p>
+        </div>
+        <div class="stats-strip roots-strip process">
+          <div class="stat"><strong>Počúvať ľudí</strong><span>Zaujímať sa o podnety obyvateľov, spolkov, škôl, klubov, seniorov, mladých ľudí aj rodín.</span></div>
+          <div class="stat"><strong>Overovať fakty</strong><span>Rozlišovať medzi dobrým nápadom a reálne uskutočniteľným riešením podľa možností mesta.</span></div>
+          <div class="stat"><strong>Hľadať spoluprácu</strong><span>Podporovať projekty, ktoré spájajú ľudí a neprehlbujú zbytočné konflikty.</span></div>
+          <div class="stat"><strong>Dotiahnuť veci</strong><span>Neostať iba pri slovách, ale sledovať, či sa dobré návrhy posúvajú k realizácii.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-title center">
+          <span class="section-kicker">Otázky</span>
+          <h2>Časté otázky</h2>
+          <p>Stručné odpovede na otázky, ktoré môžu obyvateľov zaujímať.</p>
+        </div>
+        <div class="faq">
+          <details open><summary>Čím je táto kandidatúra iná?</summary><p>Stojí na dlhodobom zapojení do života mesta – cez CVČ, mládež, seniorov, dobrovoľníctvo, športové podujatia a komunitnú prácu.</p></details>
+          <details><summary>Aké témy sú pre mňa najdôležitejšie?</summary><p>Bezpečný verejný priestor, mládež, šport, seniori, kultúra, rozumný rozvoj mesta, transparentná komunikácia a kvalitnejšie služby.</p></details>
+          <details><summary>Budem sľubovať všetko naraz?</summary><p>Nie. Program obsahuje návrhy, ktoré treba pripravovať postupne, odborne a podľa finančných možností mesta.</p></details>
+          <details><summary>Pre koho chcem pracovať?</summary><p>Pre všetkých obyvateľov Svitu – mladých ľudí, rodiny, seniorov, športovcov, dobrovoľníkov, školy, komunity aj ľudí, ktorí chcú v meste žiť spokojnejšie.</p></details>
+          <details><summary>Prečo kandidujem ako nezávislý kandidát?</summary><p>Chcem sa rozhodovať slobodne, podľa potrieb obyvateľov mesta a nie podľa straníckych záujmov.</p></details>
+          <details><summary>Ako chcem komunikovať s obyvateľmi?</summary><p>Dôležitá je pre mňa otvorená komunikácia, dostupnosť a pravidelné informovanie o témach, ktoré sa týkajú mesta.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <div class="container">
+        <div class="cta">
+          <img src="logo.png" alt="Logo Aktívne pre Svit" class="cta-logo" />
+          <h2>Poďme pracovať aktívne pre Svit</h2>
+          <p>Ak dostanem Vašu dôveru, budem robiť maximum pre to, aby bol Svit mestom, kde sa dobre žije mladým, rodinám aj seniorom – mestom, na ktoré môžeme byť hrdí.</p>
+          <div class="actions" style="justify-content:center">
+            <a class="btn btn-primary" href="#program">Pozrieť program</a>
+            <a class="btn btn-outline" href="#top">Späť hore</a>
+          </div>
+          <div class="social-links" style="justify-content:center; margin-top: 18px;">
+            <a class="social-link full social-external" href="https://www.facebook.com/profile.php?id=61575392084556" target="_top" aria-label="Facebook kandidáta">Facebook</a>
+            <a class="social-link full social-external" href="https://www.instagram.com/valcakrobert/" target="_top" aria-label="Instagram kandidáta">Instagram</a>
+            <a class="social-link full" href="mailto:info@aktivnepresvit.sk" aria-label="E-mail kandidáta">E-mail</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© Ing. Róbert Valčák</div>
+      <div class="social-links">
+        <a class="social-link social-external" href="https://www.facebook.com/profile.php?id=61575392084556" target="_top" aria-label="Facebook">FB</a>
+        <a class="social-link social-external" href="https://www.instagram.com/valcakrobert/" target="_top" aria-label="Instagram">IG</a>
+      </div>
+      <div>Aktívne pre Svit</div>
+    </div>
+  </footer>
+
+  <script>
+    const progressBar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = progress + '%';
+    });
+  </script>
+</body>
+</html>
